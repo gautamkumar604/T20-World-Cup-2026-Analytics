@@ -111,3 +111,4 @@ CREATE TABLE IF NOT EXISTS fact_match_summaries (
 );
 
 CREATE INDEX IF NOT EXISTS idx_summaries_match ON fact_match_summaries(match_id);
+

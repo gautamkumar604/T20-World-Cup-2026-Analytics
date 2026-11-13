@@ -1,0 +1,79 @@
+{
+  "ingestion": {
+    "database_url": "sqlite:///D:/my_projects/GGV_projects/T20-World-Cup-2026-Analytics/data/t20_worldcup_2026.db",
+    "tables_loaded": {
+      "dim_teams": 20,
+      "dim_venues": 8,
+      "dim_players": 282,
+      "dim_matches": 55,
+      "fact_deliveries": 11555,
+      "fact_batting_scorecards": 811,
+      "fact_bowling_scorecards": 598,
+      "fact_match_summaries": 106
+    },
+    "record_counts_csv_vs_db": {
+      "dim_teams": {
+        "csv_records": 20,
+        "db_records": 20,
+        "matches": true
+      },
+      "dim_venues": {
+        "csv_records": 8,
+        "db_records": 8,
+        "matches": true
+      },
+      "dim_players": {
+        "csv_records": 282,
+        "db_records": 282,
+        "matches": true
+      },
+      "dim_matches": {
+        "csv_records": 55,
+        "db_records": 55,
+        "matches": true
+      },
+      "fact_deliveries": {
+        "csv_records": 11555,
+        "db_records": 11555,
+        "matches": true
+      },
+      "fact_batting_scorecards": {
+        "csv_records": 811,
+        "db_records": 811,
+        "matches": true
+      },
+      "fact_bowling_scorecards": {
+        "csv_records": 598,
+        "db_records": 598,
+        "matches": true
+      },
+      "fact_match_summaries": {
+        "csv_records": 106,
+        "db_records": 106,
+        "matches": true
+      }
+    },
+    "status": "SUCCESS"
+  },
+  "views_deployed": [
+    "vw_batting_statistics",
+    "vw_boundary_analysis",
+    "vw_bowling_statistics",
+    "vw_match_results",
+    "vw_phase_wise_performance",
+    "vw_team_performance",
+    "vw_top_run_scorers",
+    "vw_top_wicket_takers",
+    "vw_toss_impact",
+    "vw_venue_analysis"
+  ],
+  "referential_integrity": {
+    "matches_to_teams_orphans": 0,
+    "matches_to_venues_orphans": 0,
+    "deliveries_to_matches_orphans": 0,
+    "batting_to_matches_orphans": 0,
+    "bowling_to_matches_orphans": 0,
+    "summaries_to_matches_orphans": 0,
+    "all_referential_checks_passed": true
+  }
+}

@@ -62,3 +62,4 @@ CREATE INDEX IF NOT EXISTS idx_dim_matches_date ON dim_matches(match_date);
 CREATE INDEX IF NOT EXISTS idx_dim_matches_stage ON dim_matches(stage);
 CREATE INDEX IF NOT EXISTS idx_dim_matches_teams ON dim_matches(team1, team2);
 CREATE INDEX IF NOT EXISTS idx_dim_players_team ON dim_players(team);
+

@@ -381,3 +381,4 @@ AFGHANISTAN_PLAYERS: List[Dict[str, Any]] = [
     {"player_id": "afg_faridmalik", "player_name": "Fareed Ahmad Malik", "team": "Afghanistan"},
     {"player_id": "afg_wishaq", "player_name": "Mohammad Ishaq", "team": "Afghanistan"},
 ]
+
