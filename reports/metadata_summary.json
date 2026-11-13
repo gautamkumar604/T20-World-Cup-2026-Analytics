@@ -1,0 +1,2265 @@
+{
+  "tournament_name": "ICC Men's T20 World Cup",
+  "tournament_year": "2026",
+  "archive_filename": "t20s_male_json.zip",
+  "total_archive_files": 3651,
+  "total_json_matches_scanned": 3649,
+  "total_2026_matches_isolated": 49,
+  "generation_timestamp": "2026-11-13T08:59:23.730072Z",
+  "matches": [
+    {
+      "match_id": "1512719",
+      "dates": [
+        "2026-02-07"
+      ],
+      "teams": [
+        "Netherlands",
+        "Pakistan"
+      ],
+      "venue": "Sinhalese Sports Club Ground",
+      "city": "Colombo",
+      "match_number": 1,
+      "stage": null,
+      "group": "A",
+      "winner": "Pakistan",
+      "outcome_details": {
+        "winner": "Pakistan",
+        "by": {
+          "wickets": 3
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 240,
+      "total_runs": 295,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Netherlands",
+          "overs_recorded": 20,
+          "deliveries_recorded": 121,
+          "runs": 147,
+          "wickets": 10,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Pakistan",
+          "overs_recorded": 20,
+          "deliveries_recorded": 119,
+          "runs": 148,
+          "wickets": 7,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512720",
+      "dates": [
+        "2026-02-07"
+      ],
+      "teams": [
+        "West Indies",
+        "Scotland"
+      ],
+      "venue": "Eden Gardens, Kolkata",
+      "city": "Kolkata",
+      "match_number": 2,
+      "stage": null,
+      "group": "C",
+      "winner": "West Indies",
+      "outcome_details": {
+        "winner": "West Indies",
+        "by": {
+          "runs": 35
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 244,
+      "total_runs": 329,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "West Indies",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 182,
+          "wickets": 5,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Scotland",
+          "overs_recorded": 19,
+          "deliveries_recorded": 120,
+          "runs": 147,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512721",
+      "dates": [
+        "2026-02-07"
+      ],
+      "teams": [
+        "India",
+        "United States of America"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": 3,
+      "stage": null,
+      "group": "A",
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "runs": 29
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 246,
+      "total_runs": 293,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 161,
+          "wickets": 9,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "United States of America",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 132,
+          "wickets": 8,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512723",
+      "dates": [
+        "2026-02-08"
+      ],
+      "teams": [
+        "England",
+        "Nepal"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": 5,
+      "stage": null,
+      "group": "C",
+      "winner": "England",
+      "outcome_details": {
+        "winner": "England",
+        "by": {
+          "runs": 4
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 253,
+      "total_runs": 364,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "England",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 184,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Nepal",
+          "overs_recorded": 20,
+          "deliveries_recorded": 129,
+          "runs": 180,
+          "wickets": 6,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512724",
+      "dates": [
+        "2026-02-08"
+      ],
+      "teams": [
+        "Sri Lanka",
+        "Ireland"
+      ],
+      "venue": "R Premadasa Stadium, Colombo",
+      "city": "Colombo",
+      "match_number": 6,
+      "stage": null,
+      "group": "B",
+      "winner": "Sri Lanka",
+      "outcome_details": {
+        "winner": "Sri Lanka",
+        "by": {
+          "runs": 20
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 250,
+      "total_runs": 306,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Sri Lanka",
+          "overs_recorded": 20,
+          "deliveries_recorded": 129,
+          "runs": 163,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Ireland",
+          "overs_recorded": 20,
+          "deliveries_recorded": 121,
+          "runs": 143,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512725",
+      "dates": [
+        "2026-02-09"
+      ],
+      "teams": [
+        "Scotland",
+        "Italy"
+      ],
+      "venue": "Eden Gardens, Kolkata",
+      "city": "Kolkata",
+      "match_number": 7,
+      "stage": null,
+      "group": "C",
+      "winner": "Scotland",
+      "outcome_details": {
+        "winner": "Scotland",
+        "by": {
+          "runs": 73
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 230,
+      "total_runs": 341,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Scotland",
+          "overs_recorded": 20,
+          "deliveries_recorded": 127,
+          "runs": 207,
+          "wickets": 4,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Italy",
+          "overs_recorded": 17,
+          "deliveries_recorded": 103,
+          "runs": 134,
+          "wickets": 9,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512726",
+      "dates": [
+        "2026-02-09"
+      ],
+      "teams": [
+        "Oman",
+        "Zimbabwe"
+      ],
+      "venue": "Sinhalese Sports Club Ground",
+      "city": "Colombo",
+      "match_number": 8,
+      "stage": null,
+      "group": "B",
+      "winner": "Zimbabwe",
+      "outcome_details": {
+        "winner": "Zimbabwe",
+        "by": {
+          "wickets": 8
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 202,
+      "total_runs": 209,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Oman",
+          "overs_recorded": 20,
+          "deliveries_recorded": 121,
+          "runs": 103,
+          "wickets": 10,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Zimbabwe",
+          "overs_recorded": 14,
+          "deliveries_recorded": 81,
+          "runs": 106,
+          "wickets": 3,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512727",
+      "dates": [
+        "2026-02-09"
+      ],
+      "teams": [
+        "South Africa",
+        "Canada"
+      ],
+      "venue": "Narendra Modi Stadium, Ahmedabad",
+      "city": "Ahmedabad",
+      "match_number": 9,
+      "stage": null,
+      "group": "D",
+      "winner": "South Africa",
+      "outcome_details": {
+        "winner": "South Africa",
+        "by": {
+          "runs": 57
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 261,
+      "total_runs": 369,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "South Africa",
+          "overs_recorded": 20,
+          "deliveries_recorded": 132,
+          "runs": 213,
+          "wickets": 4,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Canada",
+          "overs_recorded": 20,
+          "deliveries_recorded": 129,
+          "runs": 156,
+          "wickets": 8,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512728",
+      "dates": [
+        "2026-02-10"
+      ],
+      "teams": [
+        "Namibia",
+        "Netherlands"
+      ],
+      "venue": "Arun Jaitley Stadium",
+      "city": "Delhi",
+      "match_number": 10,
+      "stage": null,
+      "group": "A",
+      "winner": "Netherlands",
+      "outcome_details": {
+        "winner": "Netherlands",
+        "by": {
+          "wickets": 7
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 236,
+      "total_runs": 315,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Namibia",
+          "overs_recorded": 20,
+          "deliveries_recorded": 127,
+          "runs": 156,
+          "wickets": 8,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Netherlands",
+          "overs_recorded": 18,
+          "deliveries_recorded": 109,
+          "runs": 159,
+          "wickets": 3,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512729",
+      "dates": [
+        "2026-02-10"
+      ],
+      "teams": [
+        "United Arab Emirates",
+        "New Zealand"
+      ],
+      "venue": "MA Chidambaram Stadium",
+      "city": "Chennai",
+      "match_number": 11,
+      "stage": null,
+      "group": "D",
+      "winner": "New Zealand",
+      "outcome_details": {
+        "winner": "New Zealand",
+        "by": {
+          "wickets": 10
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 220,
+      "total_runs": 348,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "United Arab Emirates",
+          "overs_recorded": 20,
+          "deliveries_recorded": 126,
+          "runs": 173,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "New Zealand",
+          "overs_recorded": 16,
+          "deliveries_recorded": 94,
+          "runs": 175,
+          "wickets": 0,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512730",
+      "dates": [
+        "2026-02-10"
+      ],
+      "teams": [
+        "Pakistan",
+        "United States of America"
+      ],
+      "venue": "Sinhalese Sports Club Ground",
+      "city": "Colombo",
+      "match_number": 12,
+      "stage": null,
+      "group": "A",
+      "winner": "Pakistan",
+      "outcome_details": {
+        "winner": "Pakistan",
+        "by": {
+          "runs": 32
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 248,
+      "total_runs": 348,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Pakistan",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 190,
+          "wickets": 9,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "United States of America",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 158,
+          "wickets": 8,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512732",
+      "dates": [
+        "2026-02-11"
+      ],
+      "teams": [
+        "Australia",
+        "Ireland"
+      ],
+      "venue": "R Premadasa Stadium, Colombo",
+      "city": "Colombo",
+      "match_number": 14,
+      "stage": null,
+      "group": "B",
+      "winner": "Australia",
+      "outcome_details": {
+        "winner": "Australia",
+        "by": {
+          "runs": 67
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 224,
+      "total_runs": 297,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Australia",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 182,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Ireland",
+          "overs_recorded": 17,
+          "deliveries_recorded": 101,
+          "runs": 115,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512733",
+      "dates": [
+        "2026-02-11"
+      ],
+      "teams": [
+        "West Indies",
+        "England"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": 15,
+      "stage": null,
+      "group": "C",
+      "winner": "West Indies",
+      "outcome_details": {
+        "winner": "West Indies",
+        "by": {
+          "runs": 30
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 243,
+      "total_runs": 362,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "West Indies",
+          "overs_recorded": 20,
+          "deliveries_recorded": 126,
+          "runs": 196,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "England",
+          "overs_recorded": 19,
+          "deliveries_recorded": 117,
+          "runs": 166,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512734",
+      "dates": [
+        "2026-02-12"
+      ],
+      "teams": [
+        "Sri Lanka",
+        "Oman"
+      ],
+      "venue": "Pallekele International Cricket Stadium",
+      "city": "Kandy",
+      "match_number": 16,
+      "stage": null,
+      "group": "B",
+      "winner": "Sri Lanka",
+      "outcome_details": {
+        "winner": "Sri Lanka",
+        "by": {
+          "runs": 105
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 250,
+      "total_runs": 345,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Sri Lanka",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 225,
+          "wickets": 5,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Oman",
+          "overs_recorded": 20,
+          "deliveries_recorded": 126,
+          "runs": 120,
+          "wickets": 9,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512735",
+      "dates": [
+        "2026-02-12"
+      ],
+      "teams": [
+        "Nepal",
+        "Italy"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": 17,
+      "stage": null,
+      "group": "C",
+      "winner": "Italy",
+      "outcome_details": {
+        "winner": "Italy",
+        "by": {
+          "wickets": 10
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 195,
+      "total_runs": 247,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Nepal",
+          "overs_recorded": 20,
+          "deliveries_recorded": 119,
+          "runs": 123,
+          "wickets": 10,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Italy",
+          "overs_recorded": 13,
+          "deliveries_recorded": 76,
+          "runs": 124,
+          "wickets": 0,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512736",
+      "dates": [
+        "2026-02-12"
+      ],
+      "teams": [
+        "India",
+        "Namibia"
+      ],
+      "venue": "Arun Jaitley Stadium",
+      "city": "Delhi",
+      "match_number": 18,
+      "stage": null,
+      "group": "A",
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "runs": 93
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 242,
+      "total_runs": 325,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 125,
+          "runs": 209,
+          "wickets": 9,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Namibia",
+          "overs_recorded": 19,
+          "deliveries_recorded": 117,
+          "runs": 116,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512737",
+      "dates": [
+        "2026-02-13"
+      ],
+      "teams": [
+        "Zimbabwe",
+        "Australia"
+      ],
+      "venue": "R Premadasa Stadium, Colombo",
+      "city": "Colombo",
+      "match_number": 19,
+      "stage": null,
+      "group": "B",
+      "winner": "Zimbabwe",
+      "outcome_details": {
+        "winner": "Zimbabwe",
+        "by": {
+          "runs": 23
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 244,
+      "total_runs": 315,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Zimbabwe",
+          "overs_recorded": 20,
+          "deliveries_recorded": 125,
+          "runs": 169,
+          "wickets": 2,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Australia",
+          "overs_recorded": 20,
+          "deliveries_recorded": 119,
+          "runs": 146,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512738",
+      "dates": [
+        "2026-02-13"
+      ],
+      "teams": [
+        "Canada",
+        "United Arab Emirates"
+      ],
+      "venue": "Arun Jaitley Stadium",
+      "city": "Delhi",
+      "match_number": 20,
+      "stage": null,
+      "group": "D",
+      "winner": "United Arab Emirates",
+      "outcome_details": {
+        "winner": "United Arab Emirates",
+        "by": {
+          "wickets": 5
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 253,
+      "total_runs": 301,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Canada",
+          "overs_recorded": 20,
+          "deliveries_recorded": 129,
+          "runs": 150,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "United Arab Emirates",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 151,
+          "wickets": 5,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512739",
+      "dates": [
+        "2026-02-13"
+      ],
+      "teams": [
+        "United States of America",
+        "Netherlands"
+      ],
+      "venue": "MA Chidambaram Stadium",
+      "city": "Chennai",
+      "match_number": 21,
+      "stage": null,
+      "group": "A",
+      "winner": "United States of America",
+      "outcome_details": {
+        "winner": "United States of America",
+        "by": {
+          "runs": 93
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 222,
+      "total_runs": 299,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "United States of America",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 196,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Netherlands",
+          "overs_recorded": 16,
+          "deliveries_recorded": 99,
+          "runs": 103,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512740",
+      "dates": [
+        "2026-02-14"
+      ],
+      "teams": [
+        "Ireland",
+        "Oman"
+      ],
+      "venue": "Sinhalese Sports Club Ground",
+      "city": "Colombo",
+      "match_number": 22,
+      "stage": null,
+      "group": "B",
+      "winner": "Ireland",
+      "outcome_details": {
+        "winner": "Ireland",
+        "by": {
+          "runs": 96
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 236,
+      "total_runs": 374,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Ireland",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 235,
+          "wickets": 5,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Oman",
+          "overs_recorded": 18,
+          "deliveries_recorded": 112,
+          "runs": 139,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512741",
+      "dates": [
+        "2026-02-14"
+      ],
+      "teams": [
+        "Scotland",
+        "England"
+      ],
+      "venue": "Eden Gardens, Kolkata",
+      "city": "Kolkata",
+      "match_number": 23,
+      "stage": null,
+      "group": "C",
+      "winner": "England",
+      "outcome_details": {
+        "winner": "England",
+        "by": {
+          "wickets": 5
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 236,
+      "total_runs": 307,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Scotland",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 152,
+          "wickets": 10,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "England",
+          "overs_recorded": 19,
+          "deliveries_recorded": 113,
+          "runs": 155,
+          "wickets": 5,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512742",
+      "dates": [
+        "2026-02-14"
+      ],
+      "teams": [
+        "New Zealand",
+        "South Africa"
+      ],
+      "venue": "Narendra Modi Stadium, Ahmedabad",
+      "city": "Ahmedabad",
+      "match_number": 24,
+      "stage": null,
+      "group": "D",
+      "winner": "South Africa",
+      "outcome_details": {
+        "winner": "South Africa",
+        "by": {
+          "wickets": 7
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 229,
+      "total_runs": 353,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "New Zealand",
+          "overs_recorded": 20,
+          "deliveries_recorded": 120,
+          "runs": 175,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "South Africa",
+          "overs_recorded": 18,
+          "deliveries_recorded": 109,
+          "runs": 178,
+          "wickets": 3,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512743",
+      "dates": [
+        "2026-02-15"
+      ],
+      "teams": [
+        "Nepal",
+        "West Indies"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": 25,
+      "stage": null,
+      "group": "C",
+      "winner": "West Indies",
+      "outcome_details": {
+        "winner": "West Indies",
+        "by": {
+          "wickets": 9
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 221,
+      "total_runs": 267,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Nepal",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 133,
+          "wickets": 8,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "West Indies",
+          "overs_recorded": 16,
+          "deliveries_recorded": 97,
+          "runs": 134,
+          "wickets": 1,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512744",
+      "dates": [
+        "2026-02-15"
+      ],
+      "teams": [
+        "United States of America",
+        "Namibia"
+      ],
+      "venue": "MA Chidambaram Stadium",
+      "city": "Chennai",
+      "match_number": 26,
+      "stage": null,
+      "group": "A",
+      "winner": "United States of America",
+      "outcome_details": {
+        "winner": "United States of America",
+        "by": {
+          "runs": 31
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 247,
+      "total_runs": 367,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "United States of America",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 199,
+          "wickets": 4,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Namibia",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 168,
+          "wickets": 6,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512745",
+      "dates": [
+        "2026-02-15"
+      ],
+      "teams": [
+        "India",
+        "Pakistan"
+      ],
+      "venue": "R Premadasa Stadium, Colombo",
+      "city": "Colombo",
+      "match_number": 27,
+      "stage": null,
+      "group": "A",
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "runs": 61
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 232,
+      "total_runs": 289,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 121,
+          "runs": 175,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Pakistan",
+          "overs_recorded": 18,
+          "deliveries_recorded": 111,
+          "runs": 114,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512747",
+      "dates": [
+        "2026-02-16"
+      ],
+      "teams": [
+        "England",
+        "Italy"
+      ],
+      "venue": "Eden Gardens, Kolkata",
+      "city": "Kolkata",
+      "match_number": 29,
+      "stage": null,
+      "group": "C",
+      "winner": "England",
+      "outcome_details": {
+        "winner": "England",
+        "by": {
+          "runs": 24
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 250,
+      "total_runs": 380,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "England",
+          "overs_recorded": 20,
+          "deliveries_recorded": 127,
+          "runs": 202,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Italy",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 178,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512748",
+      "dates": [
+        "2026-02-16"
+      ],
+      "teams": [
+        "Australia",
+        "Sri Lanka"
+      ],
+      "venue": "Pallekele International Cricket Stadium",
+      "city": "Kandy",
+      "match_number": 30,
+      "stage": null,
+      "group": "B",
+      "winner": "Sri Lanka",
+      "outcome_details": {
+        "winner": "Sri Lanka",
+        "by": {
+          "wickets": 8
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 236,
+      "total_runs": 365,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Australia",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 181,
+          "wickets": 10,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Sri Lanka",
+          "overs_recorded": 18,
+          "deliveries_recorded": 112,
+          "runs": 184,
+          "wickets": 2,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512749",
+      "dates": [
+        "2026-02-17"
+      ],
+      "teams": [
+        "Canada",
+        "New Zealand"
+      ],
+      "venue": "MA Chidambaram Stadium",
+      "city": "Chennai",
+      "match_number": 31,
+      "stage": null,
+      "group": "D",
+      "winner": "New Zealand",
+      "outcome_details": {
+        "winner": "New Zealand",
+        "by": {
+          "wickets": 8
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 225,
+      "total_runs": 349,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Canada",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 173,
+          "wickets": 4,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "New Zealand",
+          "overs_recorded": 16,
+          "deliveries_recorded": 102,
+          "runs": 176,
+          "wickets": 2,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512751",
+      "dates": [
+        "2026-02-17"
+      ],
+      "teams": [
+        "Scotland",
+        "Nepal"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": 33,
+      "stage": null,
+      "group": "C",
+      "winner": "Nepal",
+      "outcome_details": {
+        "winner": "Nepal",
+        "by": {
+          "wickets": 7
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 241,
+      "total_runs": 341,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Scotland",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 170,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Nepal",
+          "overs_recorded": 20,
+          "deliveries_recorded": 118,
+          "runs": 171,
+          "wickets": 3,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512752",
+      "dates": [
+        "2026-02-18"
+      ],
+      "teams": [
+        "United Arab Emirates",
+        "South Africa"
+      ],
+      "venue": "Arun Jaitley Stadium",
+      "city": "Delhi",
+      "match_number": 34,
+      "stage": null,
+      "group": "D",
+      "winner": "South Africa",
+      "outcome_details": {
+        "winner": "South Africa",
+        "by": {
+          "wickets": 6
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 206,
+      "total_runs": 245,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "United Arab Emirates",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 122,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "South Africa",
+          "overs_recorded": 14,
+          "deliveries_recorded": 82,
+          "runs": 123,
+          "wickets": 4,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512753",
+      "dates": [
+        "2026-02-18"
+      ],
+      "teams": [
+        "Pakistan",
+        "Namibia"
+      ],
+      "venue": "Sinhalese Sports Club Ground",
+      "city": "Colombo",
+      "match_number": 35,
+      "stage": null,
+      "group": "A",
+      "winner": "Pakistan",
+      "outcome_details": {
+        "winner": "Pakistan",
+        "by": {
+          "runs": 102
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 233,
+      "total_runs": 296,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Pakistan",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 199,
+          "wickets": 3,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Namibia",
+          "overs_recorded": 18,
+          "deliveries_recorded": 109,
+          "runs": 97,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512754",
+      "dates": [
+        "2026-02-18"
+      ],
+      "teams": [
+        "India",
+        "Netherlands"
+      ],
+      "venue": "Narendra Modi Stadium, Ahmedabad",
+      "city": "Ahmedabad",
+      "match_number": 36,
+      "stage": null,
+      "group": "A",
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "runs": 17
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 251,
+      "total_runs": 369,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 127,
+          "runs": 193,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Netherlands",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 176,
+          "wickets": 7,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512755",
+      "dates": [
+        "2026-02-19"
+      ],
+      "teams": [
+        "West Indies",
+        "Italy"
+      ],
+      "venue": "Eden Gardens, Kolkata",
+      "city": "Kolkata",
+      "match_number": 37,
+      "stage": null,
+      "group": "C",
+      "winner": "West Indies",
+      "outcome_details": {
+        "winner": "West Indies",
+        "by": {
+          "runs": 42
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 236,
+      "total_runs": 288,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "West Indies",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 165,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Italy",
+          "overs_recorded": 18,
+          "deliveries_recorded": 113,
+          "runs": 123,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512756",
+      "dates": [
+        "2026-02-19"
+      ],
+      "teams": [
+        "Sri Lanka",
+        "Zimbabwe"
+      ],
+      "venue": "R Premadasa Stadium, Colombo",
+      "city": "Colombo",
+      "match_number": 38,
+      "stage": null,
+      "group": "B",
+      "winner": "Zimbabwe",
+      "outcome_details": {
+        "winner": "Zimbabwe",
+        "by": {
+          "wickets": 6
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 247,
+      "total_runs": 360,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Sri Lanka",
+          "overs_recorded": 20,
+          "deliveries_recorded": 125,
+          "runs": 178,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Zimbabwe",
+          "overs_recorded": 20,
+          "deliveries_recorded": 122,
+          "runs": 182,
+          "wickets": 4,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512758",
+      "dates": [
+        "2026-02-20"
+      ],
+      "teams": [
+        "Oman",
+        "Australia"
+      ],
+      "venue": "Pallekele International Cricket Stadium",
+      "city": "Kandy",
+      "match_number": 40,
+      "stage": null,
+      "group": "B",
+      "winner": "Australia",
+      "outcome_details": {
+        "winner": "Australia",
+        "by": {
+          "wickets": 9
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 158,
+      "total_runs": 212,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Oman",
+          "overs_recorded": 17,
+          "deliveries_recorded": 100,
+          "runs": 104,
+          "wickets": 10,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Australia",
+          "overs_recorded": 10,
+          "deliveries_recorded": 58,
+          "runs": 108,
+          "wickets": 1,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512760",
+      "dates": [
+        "2026-02-22"
+      ],
+      "teams": [
+        "England",
+        "Sri Lanka"
+      ],
+      "venue": "Pallekele International Cricket Stadium",
+      "city": "Kandy",
+      "match_number": 42,
+      "stage": null,
+      "group": "2",
+      "winner": "England",
+      "outcome_details": {
+        "winner": "England",
+        "by": {
+          "runs": 51
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 225,
+      "total_runs": 241,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "England",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 146,
+          "wickets": 9,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Sri Lanka",
+          "overs_recorded": 17,
+          "deliveries_recorded": 102,
+          "runs": 95,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512761",
+      "dates": [
+        "2026-02-22"
+      ],
+      "teams": [
+        "South Africa",
+        "India"
+      ],
+      "venue": "Narendra Modi Stadium, Ahmedabad",
+      "city": "Ahmedabad",
+      "match_number": 43,
+      "stage": null,
+      "group": "1",
+      "winner": "South Africa",
+      "outcome_details": {
+        "winner": "South Africa",
+        "by": {
+          "runs": 76
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 245,
+      "total_runs": 298,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "South Africa",
+          "overs_recorded": 20,
+          "deliveries_recorded": 128,
+          "runs": 187,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "India",
+          "overs_recorded": 19,
+          "deliveries_recorded": 117,
+          "runs": 111,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512762",
+      "dates": [
+        "2026-02-23"
+      ],
+      "teams": [
+        "West Indies",
+        "Zimbabwe"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": 44,
+      "stage": null,
+      "group": "1",
+      "winner": "West Indies",
+      "outcome_details": {
+        "winner": "West Indies",
+        "by": {
+          "runs": 107
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 242,
+      "total_runs": 401,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "West Indies",
+          "overs_recorded": 20,
+          "deliveries_recorded": 131,
+          "runs": 254,
+          "wickets": 6,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Zimbabwe",
+          "overs_recorded": 18,
+          "deliveries_recorded": 111,
+          "runs": 147,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512763",
+      "dates": [
+        "2026-02-24"
+      ],
+      "teams": [
+        "Pakistan",
+        "England"
+      ],
+      "venue": "Pallekele International Cricket Stadium",
+      "city": "Kandy",
+      "match_number": 45,
+      "stage": null,
+      "group": "2",
+      "winner": "England",
+      "outcome_details": {
+        "winner": "England",
+        "by": {
+          "wickets": 2
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 242,
+      "total_runs": 330,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Pakistan",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 164,
+          "wickets": 9,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "England",
+          "overs_recorded": 20,
+          "deliveries_recorded": 118,
+          "runs": 166,
+          "wickets": 8,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512764",
+      "dates": [
+        "2026-02-25"
+      ],
+      "teams": [
+        "New Zealand",
+        "Sri Lanka"
+      ],
+      "venue": "R Premadasa Stadium, Colombo",
+      "city": "Colombo",
+      "match_number": 46,
+      "stage": null,
+      "group": "2",
+      "winner": "New Zealand",
+      "outcome_details": {
+        "winner": "New Zealand",
+        "by": {
+          "runs": 61
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 248,
+      "total_runs": 275,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "New Zealand",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 168,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Sri Lanka",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 107,
+          "wickets": 8,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512765",
+      "dates": [
+        "2026-02-26"
+      ],
+      "teams": [
+        "West Indies",
+        "South Africa"
+      ],
+      "venue": "Narendra Modi Stadium, Ahmedabad",
+      "city": "Ahmedabad",
+      "match_number": 47,
+      "stage": null,
+      "group": "1",
+      "winner": "South Africa",
+      "outcome_details": {
+        "winner": "South Africa",
+        "by": {
+          "wickets": 9
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 222,
+      "total_runs": 353,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "West Indies",
+          "overs_recorded": 20,
+          "deliveries_recorded": 122,
+          "runs": 176,
+          "wickets": 8,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "South Africa",
+          "overs_recorded": 17,
+          "deliveries_recorded": 100,
+          "runs": 177,
+          "wickets": 1,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512766",
+      "dates": [
+        "2026-02-26"
+      ],
+      "teams": [
+        "India",
+        "Zimbabwe"
+      ],
+      "venue": "MA Chidambaram Stadium",
+      "city": "Chennai",
+      "match_number": 48,
+      "stage": null,
+      "group": "1",
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "runs": 72
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 257,
+      "total_runs": 440,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 128,
+          "runs": 256,
+          "wickets": 4,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Zimbabwe",
+          "overs_recorded": 20,
+          "deliveries_recorded": 129,
+          "runs": 184,
+          "wickets": 6,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512767",
+      "dates": [
+        "2026-02-27"
+      ],
+      "teams": [
+        "New Zealand",
+        "England"
+      ],
+      "venue": "R Premadasa Stadium, Colombo",
+      "city": "Colombo",
+      "match_number": 49,
+      "stage": null,
+      "group": "2",
+      "winner": "England",
+      "outcome_details": {
+        "winner": "England",
+        "by": {
+          "wickets": 4
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 240,
+      "total_runs": 320,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "New Zealand",
+          "overs_recorded": 20,
+          "deliveries_recorded": 122,
+          "runs": 159,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "England",
+          "overs_recorded": 20,
+          "deliveries_recorded": 118,
+          "runs": 161,
+          "wickets": 6,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512768",
+      "dates": [
+        "2026-02-28"
+      ],
+      "teams": [
+        "Pakistan",
+        "Sri Lanka"
+      ],
+      "venue": "Pallekele International Cricket Stadium",
+      "city": "Kandy",
+      "match_number": 50,
+      "stage": null,
+      "group": "2",
+      "winner": "Pakistan",
+      "outcome_details": {
+        "winner": "Pakistan",
+        "by": {
+          "runs": 5
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 249,
+      "total_runs": 419,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Pakistan",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 212,
+          "wickets": 8,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "Sri Lanka",
+          "overs_recorded": 20,
+          "deliveries_recorded": 126,
+          "runs": 207,
+          "wickets": 6,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512769",
+      "dates": [
+        "2026-03-01"
+      ],
+      "teams": [
+        "Zimbabwe",
+        "South Africa"
+      ],
+      "venue": "Arun Jaitley Stadium",
+      "city": "Delhi",
+      "match_number": 51,
+      "stage": null,
+      "group": "1",
+      "winner": "South Africa",
+      "outcome_details": {
+        "winner": "South Africa",
+        "by": {
+          "wickets": 5
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 235,
+      "total_runs": 307,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "Zimbabwe",
+          "overs_recorded": 20,
+          "deliveries_recorded": 124,
+          "runs": 153,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "South Africa",
+          "overs_recorded": 18,
+          "deliveries_recorded": 111,
+          "runs": 154,
+          "wickets": 5,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512770",
+      "dates": [
+        "2026-03-01"
+      ],
+      "teams": [
+        "West Indies",
+        "India"
+      ],
+      "venue": "Eden Gardens, Kolkata",
+      "city": "Kolkata",
+      "match_number": 52,
+      "stage": null,
+      "group": "1",
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "wickets": 5
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 249,
+      "total_runs": 394,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "West Indies",
+          "overs_recorded": 20,
+          "deliveries_recorded": 126,
+          "runs": 195,
+          "wickets": 4,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 123,
+          "runs": 199,
+          "wickets": 5,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512771",
+      "dates": [
+        "2026-03-04"
+      ],
+      "teams": [
+        "South Africa",
+        "New Zealand"
+      ],
+      "venue": "Eden Gardens, Kolkata",
+      "city": "Kolkata",
+      "match_number": null,
+      "stage": "Semi Final",
+      "group": null,
+      "winner": "New Zealand",
+      "outcome_details": {
+        "winner": "New Zealand",
+        "by": {
+          "wickets": 9
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 206,
+      "total_runs": 342,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "South Africa",
+          "overs_recorded": 20,
+          "deliveries_recorded": 129,
+          "runs": 169,
+          "wickets": 8,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "New Zealand",
+          "overs_recorded": 13,
+          "deliveries_recorded": 77,
+          "runs": 173,
+          "wickets": 1,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512772",
+      "dates": [
+        "2026-03-05"
+      ],
+      "teams": [
+        "India",
+        "England"
+      ],
+      "venue": "Wankhede Stadium, Mumbai",
+      "city": "Mumbai",
+      "match_number": null,
+      "stage": "Semi Final",
+      "group": null,
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "runs": 7
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 259,
+      "total_runs": 499,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 129,
+          "runs": 253,
+          "wickets": 7,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "England",
+          "overs_recorded": 20,
+          "deliveries_recorded": 130,
+          "runs": 246,
+          "wickets": 7,
+          "is_super_over": false
+        }
+      ]
+    },
+    {
+      "match_id": "1512773",
+      "dates": [
+        "2026-03-08"
+      ],
+      "teams": [
+        "India",
+        "New Zealand"
+      ],
+      "venue": "Narendra Modi Stadium, Ahmedabad",
+      "city": "Ahmedabad",
+      "match_number": null,
+      "stage": "Final",
+      "group": null,
+      "winner": "India",
+      "outcome_details": {
+        "winner": "India",
+        "by": {
+          "runs": 96
+        }
+      },
+      "innings_count": 2,
+      "total_deliveries": 249,
+      "total_runs": 414,
+      "has_ball_by_ball_coverage": true,
+      "innings_breakdown": [
+        {
+          "innings_number": 1,
+          "team": "India",
+          "overs_recorded": 20,
+          "deliveries_recorded": 128,
+          "runs": 255,
+          "wickets": 5,
+          "is_super_over": false
+        },
+        {
+          "innings_number": 2,
+          "team": "New Zealand",
+          "overs_recorded": 19,
+          "deliveries_recorded": 121,
+          "runs": 159,
+          "wickets": 10,
+          "is_super_over": false
+        }
+      ]
+    }
+  ]
+}

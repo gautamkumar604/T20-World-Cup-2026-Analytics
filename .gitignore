@@ -1,0 +1,58 @@
+# Python environment
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Data files (raw zip archives are tracked or managed, ignore large unpacks)
+data/raw/*.zip
+data/raw/*.tar.gz
+data/interim/*.json
+data/processed/*.csv
+data/processed/*.parquet
+
+# Database credentials & environment secrets
+.env
+*.env
+.env.*
+!.env.example
+
+# IDE & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs & temp files
+*.log
+logs/
+temp/
+tmp/
+.pytest_cache/
+.coverage
+htmlcov/
+
