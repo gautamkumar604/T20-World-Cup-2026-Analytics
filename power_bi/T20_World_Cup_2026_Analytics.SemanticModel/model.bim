@@ -1117,9 +1117,9 @@
           },
           {
             "name": "Team Balls Bowled (ICC NRR)",
-            "expression": "CALCULATE(\n    SUMX(\n        fact_match_summaries,\n        IF(fact_match_summaries[total_wickets] = 10, 120, fact_match_summaries[legal_deliveries])\n    ),\n    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[bowling_team]),\n    fact_match_summaries[is_super_over] = FALSE()\n)",
+            "expression": "CALCULATE(\n    SUM(fact_match_summaries[legal_deliveries]),\n    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[bowling_team]),\n    fact_match_summaries[is_super_over] = FALSE()\n)",
             "formatString": "#,##0",
-            "description": "Legal balls bowled with ICC 120-ball opponent all-out rule applied"
+            "description": "Actual legal deliveries bowled by the team (ICC Clause 16.10.7: all-out full quota adjustment applies strictly to batting team balls faced)"
           },
           {
             "name": "Net Run Rate (ICC)",

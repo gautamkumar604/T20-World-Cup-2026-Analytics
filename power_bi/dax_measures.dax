@@ -252,13 +252,10 @@ CALCULATE(
 )
 
 // Measure: Team Balls Bowled (ICC NRR)
-// Description: Legal balls bowled with ICC 120-ball opponent all-out rule applied
+// Description: Actual legal deliveries bowled by the team (ICC Clause 16.10.7: all-out full quota adjustment applies strictly to batting team balls faced)
 Team Balls Bowled (ICC NRR) =
 CALCULATE(
-    SUMX(
-        fact_match_summaries,
-        IF(fact_match_summaries[total_wickets] = 10, 120, fact_match_summaries[legal_deliveries])
-    ),
+    SUM(fact_match_summaries[legal_deliveries]),
     TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[bowling_team]),
     fact_match_summaries[is_super_over] = FALSE()
 )
