@@ -157,3 +157,4 @@ RETURN
 In the Power BI visual design:
 1. **Tournament Standings & Team Summaries**: Visuals should draw from `fact_match_summaries` and `dim_matches`, covering all 55 scheduled matches and 53 played fixtures.
 2. **Phase-by-Phase & Delivery Heatmaps**: Apply a page or visual filter `dim_matches[ball_by_ball_available] = TRUE()` so users are aware these granular metrics reflect the 49 matches with ball-by-ball feeds.
+

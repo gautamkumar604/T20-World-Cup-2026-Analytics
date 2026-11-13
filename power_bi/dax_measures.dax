@@ -1,0 +1,281 @@
+// ==============================================================================
+// ICC Men's T20 World Cup 2026 — Validated DAX KPI Measure Library (Phase 4.5)
+// Reconciled mathematically against PostgreSQL 18.7 with ICC NRR & explicit filter transfer
+// ==============================================================================
+
+// Measure: Tournament Matches Scheduled
+// Description: Total scheduled fixtures in tournament (55 matches at match grain)
+Tournament Matches Scheduled =
+COUNTROWS(dim_matches)
+
+// Measure: Tournament Matches Completed
+// Description: Total fixtures completed with a definitive result (53 matches at match grain)
+Tournament Matches Completed =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] IN {"runs", "wickets", "tie_super_over"})
+
+// Measure: Tournament Matches Abandoned
+// Description: Fixtures abandoned due to rain without result (exactly 2 matches: IRE v ZIM, PAK v NZ)
+Tournament Matches Abandoned =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "no result")
+
+// Measure: Tournament Matches Won
+// Description: Total fixtures that produced a winning team (53 matches at match grain)
+Tournament Matches Won =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] IN {"runs", "wickets", "tie_super_over"})
+
+// Measure: Tournament Matches Lost
+// Description: Total fixtures that produced a losing team (53 matches at match grain)
+Tournament Matches Lost =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] IN {"runs", "wickets", "tie_super_over"})
+
+// Measure: Total Tournament Runs
+// Description: Total runs scored across all 53 completed matches excluding super overs (17,582 runs)
+Total Tournament Runs =
+CALCULATE(SUM(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Total Tournament Wickets
+// Description: Total wickets fallen across all 53 completed matches excluding super overs (702 wickets)
+Total Tournament Wickets =
+CALCULATE(SUM(fact_match_summaries[total_wickets]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Tournament Legal Deliveries (Summary)
+// Description: Total summary-derived legal deliveries bowled across 53 completed matches (12,059 deliveries)
+Tournament Legal Deliveries (Summary) =
+CALCULATE(SUM(fact_match_summaries[legal_deliveries]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Total Legal Overs Bowled
+// Description: Total legal overs completed across 53 matches (2,009.8 overs)
+Total Legal Overs Bowled =
+DIVIDE([Tournament Legal Deliveries (Summary)], 6, 0)
+
+// Measure: Tournament Run Rate
+// Description: Tournament overall scoring rate per over across 53 matches (8.75 rpo)
+Tournament Run Rate =
+DIVIDE([Total Tournament Runs], [Total Legal Overs Bowled], 0)
+
+// Measure: Highest Match Score
+// Description: Highest score with runs, wickets, team and opponent (256/4 (India vs Zimbabwe))
+Highest Match Score =
+VAR MaxRuns = CALCULATE(MAX(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())
+VAR TopRow = TOPN(1, FILTER(fact_match_summaries, fact_match_summaries[total_runs] = MaxRuns && fact_match_summaries[is_super_over] = FALSE()), fact_match_summaries[total_runs], DESC)
+VAR TeamName = MAXX(TopRow, fact_match_summaries[batting_team])
+VAR Opponent = MAXX(TopRow, fact_match_summaries[bowling_team])
+VAR Wickets = MAXX(TopRow, fact_match_summaries[total_wickets])
+RETURN
+    IF(NOT ISBLANK(MaxRuns), FORMAT(MaxRuns, "#,##0") & "/" & FORMAT(Wickets, "0") & " (" & TeamName & " vs " & Opponent & ")", BLANK())
+
+// Measure: Bat First Wins
+// Description: Matches won defending total at match grain (29 matches)
+Bat First Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "runs")
+
+// Measure: Bat First Win %
+// Description: Percentage of completed matches won batting first (54.72%)
+Bat First Win % =
+DIVIDE([Bat First Wins], [Tournament Matches Completed], 0) * 100
+
+// Measure: Chase Wins
+// Description: Matches won chasing target at match grain (23 matches)
+Chase Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "wickets")
+
+// Measure: Chase Win %
+// Description: Percentage of completed matches won chasing (43.40%)
+Chase Win % =
+DIVIDE([Chase Wins], [Tournament Matches Completed], 0) * 100
+
+// Measure: Tie Super Over Wins
+// Description: Matches tied and decided via Super Over (1 match: SA vs AFG)
+Tie Super Over Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "tie_super_over")
+
+// Measure: Tie Super Over Win %
+// Description: Percentage of matches decided by Super Over (1.89%)
+Tie Super Over Win % =
+DIVIDE([Tie Super Over Wins], [Tournament Matches Completed], 0) * 100
+
+// Measure: Toss Winner Match Wins
+// Description: Matches where toss winner also won match (23 matches)
+Toss Winner Match Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[toss_winner] = dim_matches[winner], dim_matches[outcome_type] IN {"runs", "wickets", "tie_super_over"})
+
+// Measure: Toss Winner Win %
+// Description: Toss win conversion percentage across 53 completed matches (43.40%)
+Toss Winner Win % =
+DIVIDE([Toss Winner Match Wins], [Tournament Matches Completed], 0) * 100
+
+// Measure: Total Team Wins
+// Description: Total winning team performances across all teams (53 team wins)
+Total Team Wins =
+CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = TRUE())
+
+// Measure: Total Team Losses
+// Description: Total losing team performances across all teams (53 team losses)
+Total Team Losses =
+CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = FALSE(), bridge_match_teams[is_no_result] = FALSE())
+
+// Measure: Selected Team Matches Scheduled
+// Description: Unique count of scheduled fixtures for selected team(s); evaluates to 55 when All Teams selected
+Selected Team Matches Scheduled =
+DISTINCTCOUNT(bridge_match_teams[match_id])
+
+// Measure: Selected Team Matches Completed
+// Description: Unique count of completed fixtures with a result for selected team(s)
+Selected Team Matches Completed =
+CALCULATE(DISTINCTCOUNT(bridge_match_teams[match_id]), bridge_match_teams[is_no_result] = FALSE())
+
+// Measure: Selected Team Matches Abandoned
+// Description: Unique count of rain-abandoned matches for selected team(s) (1 each for ZIM and PAK; 2 overall)
+Selected Team Matches Abandoned =
+CALCULATE(DISTINCTCOUNT(bridge_match_teams[match_id]), bridge_match_teams[is_no_result] = TRUE())
+
+// Measure: Selected Team Matches Won
+// Description: Total matches won by selected team(s)
+Selected Team Matches Won =
+CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = TRUE())
+
+// Measure: Selected Team Losses
+// Description: Total matches lost by selected team(s); evaluates to 53 losing team records when All Teams selected
+Selected Team Losses =
+CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = FALSE(), bridge_match_teams[is_no_result] = FALSE())
+
+// Measure: Tournament Points
+// Description: Official ICC tournament points: 2 for Win, 1 for Abandoned (No Result), 0 for Loss
+Tournament Points =
+([Selected Team Matches Won] * 2) + ([Selected Team Matches Abandoned] * 1)
+
+// Measure: Selected Team Runs Scored
+// Description: Total runs scored by selected team in regular 20-over innings
+Selected Team Runs Scored =
+CALCULATE(
+    SUM(fact_match_summaries[total_runs]),
+    TREATAS(VALUES(bridge_match_teams[match_id]), dim_matches[match_id]),
+    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[batting_team]),
+    fact_match_summaries[is_super_over] = FALSE()
+)
+
+// Measure: Selected Team Opponent Runs
+// Description: Total runs conceded by selected team to opponents in regular 20-over innings
+Selected Team Opponent Runs =
+CALCULATE(
+    SUM(fact_match_summaries[total_runs]),
+    TREATAS(VALUES(bridge_match_teams[match_id]), dim_matches[match_id]),
+    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[bowling_team]),
+    fact_match_summaries[is_super_over] = FALSE()
+)
+
+// Measure: Selected Team Match Runs
+// Description: Total match runs scored across both innings in fixtures involving selected team
+Selected Team Match Runs =
+CALCULATE(
+    SUM(fact_match_summaries[total_runs]),
+    TREATAS(VALUES(bridge_match_teams[match_id]), dim_matches[match_id]),
+    fact_match_summaries[is_super_over] = FALSE()
+)
+
+// Measure: Selected Team Bat First Wins
+// Description: Matches won defending total by selected team; transfers runs match IDs back to bridge
+Selected Team Bat First Wins =
+VAR TargetMatches = 
+    CALCULATETABLE(
+        VALUES(dim_matches[match_id]),
+        dim_matches[outcome_type] = "runs"
+    )
+RETURN
+    CALCULATE(
+        COUNTROWS(bridge_match_teams),
+        bridge_match_teams[is_winner] = TRUE(),
+        TREATAS(TargetMatches, bridge_match_teams[match_id])
+    )
+
+// Measure: Selected Team Chase Wins
+// Description: Matches won chasing target by selected team; transfers wickets match IDs back to bridge
+Selected Team Chase Wins =
+VAR TargetMatches = 
+    CALCULATETABLE(
+        VALUES(dim_matches[match_id]),
+        dim_matches[outcome_type] = "wickets"
+    )
+RETURN
+    CALCULATE(
+        COUNTROWS(bridge_match_teams),
+        bridge_match_teams[is_winner] = TRUE(),
+        TREATAS(TargetMatches, bridge_match_teams[match_id])
+    )
+
+// Measure: Selected Team Super Over Wins
+// Description: Matches tied and won via Super Over by selected team (SA vs AFG); transfers tie match IDs back to bridge
+Selected Team Super Over Wins =
+VAR TargetMatches = 
+    CALCULATETABLE(
+        VALUES(dim_matches[match_id]),
+        dim_matches[outcome_type] = "tie_super_over"
+    )
+RETURN
+    CALCULATE(
+        COUNTROWS(bridge_match_teams),
+        bridge_match_teams[is_winner] = TRUE(),
+        TREATAS(TargetMatches, bridge_match_teams[match_id])
+    )
+
+// Measure: Selected Team Matches at Venue
+// Description: Matches played by selected team at current venue context; BLANK for venues not visited
+Selected Team Matches at Venue =
+VAR VenueMatches = VALUES(dim_matches[match_id])
+RETURN
+    CALCULATE(
+        DISTINCTCOUNT(bridge_match_teams[match_id]),
+        TREATAS(VenueMatches, bridge_match_teams[match_id])
+    )
+
+// Measure: Selected Team Wins at Venue
+// Description: Matches won by selected team at current venue context
+Selected Team Wins at Venue =
+VAR VenueMatches = VALUES(dim_matches[match_id])
+RETURN
+    CALCULATE(
+        COUNTROWS(bridge_match_teams),
+        bridge_match_teams[is_winner] = TRUE(),
+        TREATAS(VenueMatches, bridge_match_teams[match_id])
+    )
+
+// Measure: Team Balls Faced (ICC NRR)
+// Description: Legal balls faced with ICC 120-ball all-out rule applied
+Team Balls Faced (ICC NRR) =
+CALCULATE(
+    SUMX(
+        fact_match_summaries,
+        IF(fact_match_summaries[total_wickets] = 10, 120, fact_match_summaries[legal_deliveries])
+    ),
+    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[batting_team]),
+    fact_match_summaries[is_super_over] = FALSE()
+)
+
+// Measure: Team Balls Bowled (ICC NRR)
+// Description: Legal balls bowled with ICC 120-ball opponent all-out rule applied
+Team Balls Bowled (ICC NRR) =
+CALCULATE(
+    SUMX(
+        fact_match_summaries,
+        IF(fact_match_summaries[total_wickets] = 10, 120, fact_match_summaries[legal_deliveries])
+    ),
+    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[bowling_team]),
+    fact_match_summaries[is_super_over] = FALSE()
+)
+
+// Measure: Net Run Rate (ICC)
+// Description: Official ICC Net Run Rate (Run Rate For minus Run Rate Against)
+Net Run Rate (ICC) =
+VAR RunsFor = [Selected Team Runs Scored]
+VAR BallsFor = [Team Balls Faced (ICC NRR)]
+VAR OversFor = DIVIDE(BallsFor, 6, 0)
+VAR RunsAgainst = [Selected Team Opponent Runs]
+VAR BallsAgainst = [Team Balls Bowled (ICC NRR)]
+VAR OversAgainst = DIVIDE(BallsAgainst, 6, 0)
+RETURN
+    IF(
+        OversFor > 0 && OversAgainst > 0,
+        DIVIDE(RunsFor, OversFor, 0) - DIVIDE(RunsAgainst, OversAgainst, 0),
+        BLANK()
+    )
+

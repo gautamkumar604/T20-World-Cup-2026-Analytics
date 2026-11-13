@@ -1,0 +1,110 @@
+// ==============================================================================
+// ICC Men's T20 World Cup 2026 — Validated DAX KPI Measure Library
+// Verified against live PostgreSQL 18.7 queries with 100% mathematical parity
+// ==============================================================================
+
+// Measure: Total Matches Scheduled
+// Purpose: Total scheduled fixtures in the tournament (55 matches)
+Total Matches Scheduled =
+COUNTROWS(dim_matches)
+
+// Measure: Matches Completed
+// Purpose: Total fixtures completed with a result (53 matches)
+Matches Completed =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] IN {"runs", "wickets", "tie_super_over"})
+
+// Measure: Matches Abandoned
+// Purpose: Fixtures abandoned due to rain without result (2 matches)
+Matches Abandoned =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "no_result")
+
+// Measure: Total Tournament Runs
+// Purpose: Total runs scored across all 53 completed matches excluding super overs (17,582 runs)
+Total Tournament Runs =
+CALCULATE(SUM(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Total Tournament Wickets
+// Purpose: Total wickets fallen across all 53 completed matches excluding super overs (702 wickets)
+Total Tournament Wickets =
+CALCULATE(SUM(fact_match_summaries[total_wickets]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Total Legal Overs Bowled
+// Purpose: Total legal overs completed across 53 matches (2,009.8 overs)
+Total Legal Overs Bowled =
+DIVIDE(CALCULATE(SUM(fact_match_summaries[legal_deliveries]), fact_match_summaries[is_super_over] = FALSE()), 6, 0)
+
+// Measure: Tournament Run Rate
+// Purpose: Tournament overall scoring rate per over across 53 matches (8.75 rpo)
+Tournament Run Rate =
+DIVIDE([Total Tournament Runs], [Total Legal Overs Bowled], 0)
+
+// Measure: Highest Match Score
+// Purpose: Highest team innings score in tournament (256/4 by India vs Zimbabwe)
+Highest Match Score =
+CALCULATE(MAX(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Bat First Wins
+// Purpose: Matches won defending total (29 matches)
+Bat First Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "runs")
+
+// Measure: Bat First Win %
+// Purpose: Percentage of completed matches won batting first (54.72%)
+Bat First Win % =
+DIVIDE([Bat First Wins], [Matches Completed], 0) * 100
+
+// Measure: Chase Wins
+// Purpose: Matches won chasing target (23 matches)
+Chase Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "wickets")
+
+// Measure: Chase Win %
+// Purpose: Percentage of completed matches won chasing (43.40%)
+Chase Win % =
+DIVIDE([Chase Wins], [Matches Completed], 0) * 100
+
+// Measure: Tie Super Over Wins
+// Purpose: Matches tied and decided via Super Over (1 match: SA vs AFG)
+Tie Super Over Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = "tie_super_over")
+
+// Measure: Tie Super Over Win %
+// Purpose: Percentage of matches decided by Super Over (1.89%)
+Tie Super Over Win % =
+DIVIDE([Tie Super Over Wins], [Matches Completed], 0) * 100
+
+// Measure: Toss Winner Match Wins
+// Purpose: Matches where toss winner also won match (23 matches)
+Toss Winner Match Wins =
+CALCULATE(COUNTROWS(dim_matches), dim_matches[toss_winner] = dim_matches[winner], dim_matches[outcome_type] IN {"runs", "wickets", "tie_super_over"})
+
+// Measure: Toss Winner Win %
+// Purpose: Toss win conversion percentage across 53 completed matches (43.40%)
+Toss Winner Win % =
+DIVIDE([Toss Winner Match Wins], [Matches Completed], 0) * 100
+
+// Measure: Total Fours (Scorecard)
+// Purpose: Total boundaries hit for 4 runs across 49 scorecard matches (1,328 fours)
+Total Fours (Scorecard) =
+SUM(fact_batting_scorecards[fours])
+
+// Measure: Total Sixes (Scorecard)
+// Purpose: Total boundaries hit for 6 runs across 49 scorecard matches (718 sixes)
+Total Sixes (Scorecard) =
+SUM(fact_batting_scorecards[sixes])
+
+// Measure: Batting Strike Rate
+// Purpose: Overall batting strike rate across 49 scorecard matches (139.02)
+Batting Strike Rate =
+DIVIDE(SUM(fact_batting_scorecards[runs]), SUM(fact_batting_scorecards[balls_faced]), 0) * 100
+
+// Measure: Bowling Economy Rate
+// Purpose: Overall bowling economy rate across 49 scorecard matches (8.64 rpo)
+Bowling Economy Rate =
+DIVIDE(SUM(fact_bowling_scorecards[runs_conceded]), DIVIDE(SUM(fact_bowling_scorecards[legal_balls]), 6, 0), 0)
+
+// Measure: Bowler Dot Ball %
+// Purpose: Percentage of legal balls bowled as dots across 49 scorecard matches (36.14%)
+Bowler Dot Ball % =
+DIVIDE(SUM(fact_bowling_scorecards[dots]), SUM(fact_bowling_scorecards[legal_balls]), 0) * 100
+

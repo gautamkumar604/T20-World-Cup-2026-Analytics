@@ -86,3 +86,4 @@ python -m src.database.loader
 # Run automated tests
 python -m unittest discover -s tests -p "test_*.py"
 ```
+

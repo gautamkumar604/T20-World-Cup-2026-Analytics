@@ -1,6 +1,6 @@
 {
   "ingestion": {
-    "database_url": "sqlite:///D:/my_projects/GGV_projects/T20-World-Cup-2026-Analytics/data/t20_worldcup_2026.db",
+    "database_url": "postgresql+psycopg2://postgres:***@localhost:5432/t20_worldcup_2026",
     "tables_loaded": {
       "dim_teams": 20,
       "dim_venues": 8,

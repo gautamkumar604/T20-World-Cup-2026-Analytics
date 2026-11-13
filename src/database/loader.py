@@ -55,7 +55,8 @@ class DatabaseLoader:
         self.reports_dir = REPORTS_DIR
         self.reports_dir.mkdir(parents=True, exist_ok=True)
         self.is_sqlite = str(self.engine.url).startswith("sqlite")
-        logger.info("DatabaseLoader initialized using engine: %s (is_sqlite=%s)", self.engine.url, self.is_sqlite)
+        safe_url = self.engine.url.render_as_string(hide_password=True)
+        logger.info("DatabaseLoader initialized using engine: %s (is_sqlite=%s)", safe_url, self.is_sqlite)
 
     def deploy_schema(self) -> None:
         """Executes DDL statements to create dimension and fact tables."""
@@ -96,7 +97,7 @@ class DatabaseLoader:
         """Loads all processed CSV files into corresponding relational tables idempotently."""
         logger.info("Beginning transactional data ingestion...")
         ingestion_audit = {
-            "database_url": str(self.engine.url),
+            "database_url": self.engine.url.render_as_string(hide_password=True),
             "tables_loaded": {},
             "record_counts_csv_vs_db": {},
             "status": "IN_PROGRESS",
@@ -303,3 +304,4 @@ if __name__ == "__main__":
     print("Database loader executed successfully:")
     for t, s in results["ingestion"]["record_counts_csv_vs_db"].items():
         print(f"  {t}: {s['db_records']} rows")
+

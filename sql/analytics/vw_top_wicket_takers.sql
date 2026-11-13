@@ -40,3 +40,4 @@ SELECT
 FROM fact_bowling_scorecards bw
 GROUP BY bw.player_id, bw.player_name, bw.team
 ORDER BY total_wickets DESC, economy_rate ASC;
+

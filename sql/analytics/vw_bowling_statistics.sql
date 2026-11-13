@@ -41,3 +41,4 @@ FROM fact_bowling_scorecards bw
 GROUP BY bw.player_id, bw.player_name, bw.team
 HAVING SUM(bw.legal_balls) >= 24
 ORDER BY wickets DESC, economy_rate ASC;
+

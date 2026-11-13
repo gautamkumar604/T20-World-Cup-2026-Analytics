@@ -29,3 +29,4 @@ SELECT
 FROM fact_deliveries d
 GROUP BY d.batting_team
 ORDER BY total_boundary_runs DESC;
+

@@ -1,0 +1,1339 @@
+{
+  "name": "T20_World_Cup_2026_Analytics",
+  "compatibilityLevel": 1550,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "dim_matches",
+        "columns": [
+          {
+            "name": "match_id",
+            "dataType": "string",
+            "sourceColumn": "match_id",
+            "isNullable": false
+          },
+          {
+            "name": "match_date",
+            "dataType": "dateTime",
+            "sourceColumn": "match_date",
+            "isNullable": false
+          },
+          {
+            "name": "tournament_name",
+            "dataType": "string",
+            "sourceColumn": "tournament_name",
+            "isNullable": false
+          },
+          {
+            "name": "match_number",
+            "dataType": "int64",
+            "sourceColumn": "match_number",
+            "isNullable": true
+          },
+          {
+            "name": "stage",
+            "dataType": "string",
+            "sourceColumn": "stage",
+            "isNullable": true
+          },
+          {
+            "name": "group_name",
+            "dataType": "string",
+            "sourceColumn": "group_name",
+            "isNullable": true
+          },
+          {
+            "name": "team1",
+            "dataType": "string",
+            "sourceColumn": "team1",
+            "isNullable": false
+          },
+          {
+            "name": "team2",
+            "dataType": "string",
+            "sourceColumn": "team2",
+            "isNullable": false
+          },
+          {
+            "name": "toss_winner",
+            "dataType": "string",
+            "sourceColumn": "toss_winner",
+            "isNullable": true
+          },
+          {
+            "name": "toss_decision",
+            "dataType": "string",
+            "sourceColumn": "toss_decision",
+            "isNullable": true
+          },
+          {
+            "name": "venue",
+            "dataType": "string",
+            "sourceColumn": "venue",
+            "isNullable": false
+          },
+          {
+            "name": "city",
+            "dataType": "string",
+            "sourceColumn": "city",
+            "isNullable": true
+          },
+          {
+            "name": "winner",
+            "dataType": "string",
+            "sourceColumn": "winner",
+            "isNullable": false
+          },
+          {
+            "name": "outcome_type",
+            "dataType": "string",
+            "sourceColumn": "outcome_type",
+            "isNullable": false
+          },
+          {
+            "name": "win_margin",
+            "dataType": "int64",
+            "sourceColumn": "win_margin",
+            "isNullable": false
+          },
+          {
+            "name": "player_of_match",
+            "dataType": "string",
+            "sourceColumn": "player_of_match",
+            "isNullable": true
+          },
+          {
+            "name": "target_runs",
+            "dataType": "int64",
+            "sourceColumn": "target_runs",
+            "isNullable": true
+          },
+          {
+            "name": "target_overs",
+            "dataType": "double",
+            "sourceColumn": "target_overs",
+            "isNullable": true
+          },
+          {
+            "name": "is_dls_applied",
+            "dataType": "boolean",
+            "sourceColumn": "is_dls_applied",
+            "isNullable": false
+          },
+          {
+            "name": "umpire1",
+            "dataType": "string",
+            "sourceColumn": "umpire1",
+            "isNullable": true
+          },
+          {
+            "name": "umpire2",
+            "dataType": "string",
+            "sourceColumn": "umpire2",
+            "isNullable": true
+          },
+          {
+            "name": "tv_umpire",
+            "dataType": "string",
+            "sourceColumn": "tv_umpire",
+            "isNullable": true
+          },
+          {
+            "name": "match_referee",
+            "dataType": "string",
+            "sourceColumn": "match_referee",
+            "isNullable": true
+          },
+          {
+            "name": "metadata_available",
+            "dataType": "boolean",
+            "sourceColumn": "metadata_available",
+            "isNullable": false
+          },
+          {
+            "name": "scorecard_available",
+            "dataType": "boolean",
+            "sourceColumn": "scorecard_available",
+            "isNullable": false
+          },
+          {
+            "name": "ball_by_ball_available",
+            "dataType": "boolean",
+            "sourceColumn": "ball_by_ball_available",
+            "isNullable": false
+          },
+          {
+            "name": "source_note",
+            "dataType": "string",
+            "sourceColumn": "source_note",
+            "isNullable": false
+          },
+          {
+            "name": "Stage_Normalized",
+            "dataType": "string",
+            "sourceColumn": "Stage_Normalized",
+            "isNullable": false
+          },
+          {
+            "name": "Tournament_Group",
+            "dataType": "string",
+            "sourceColumn": "Tournament_Group",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_matches-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_dim_matches = Source{[Schema=\"public\",Item=\"dim_matches\"]}[Data],\n",
+                "    AddStage = Table.AddColumn(public_dim_matches, \"Stage_Normalized\", each \n",
+                "        if List.Contains({\"A\", \"B\", \"C\", \"D\"}, [group_name]) then \"Group Stage\"\n",
+                "        else if List.Contains({\"1\", \"2\"}, [group_name]) then \"Super 8\"\n",
+                "        else if [stage] <> null then [stage]\n",
+                "        else \"Knockout\", type text),\n",
+                "    AddGroup = Table.AddColumn(AddStage, \"Tournament_Group\", each \n",
+                "        if [group_name] = \"A\" then \"Group A\"\n",
+                "        else if [group_name] = \"B\" then \"Group B\"\n",
+                "        else if [group_name] = \"C\" then \"Group C\"\n",
+                "        else if [group_name] = \"D\" then \"Group D\"\n",
+                "        else if [group_name] = \"1\" then \"Super 8 - Group 1\"\n",
+                "        else if [group_name] = \"2\" then \"Super 8 - Group 2\"\n",
+                "        else \"Playoffs\", type text)\n",
+                "in\n",
+                "    AddGroup\n"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_players",
+        "columns": [
+          {
+            "name": "player_id",
+            "dataType": "string",
+            "sourceColumn": "player_id",
+            "isNullable": false
+          },
+          {
+            "name": "player_name",
+            "dataType": "string",
+            "sourceColumn": "player_name",
+            "isNullable": false
+          },
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_players-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_dim_players = Source{[Schema=\"public\",Item=\"dim_players\"]}[Data]\n",
+                "in\n",
+                "    public_dim_players\n"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_teams",
+        "columns": [
+          {
+            "name": "team_id",
+            "dataType": "string",
+            "sourceColumn": "team_id",
+            "isNullable": false
+          },
+          {
+            "name": "team_name",
+            "dataType": "string",
+            "sourceColumn": "team_name",
+            "isNullable": false
+          },
+          {
+            "name": "icc_status",
+            "dataType": "string",
+            "sourceColumn": "icc_status",
+            "isNullable": false
+          },
+          {
+            "name": "group_2026",
+            "dataType": "string",
+            "sourceColumn": "group_2026",
+            "isNullable": false
+          },
+          {
+            "name": "is_host",
+            "dataType": "boolean",
+            "sourceColumn": "is_host",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_teams-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_dim_teams = Source{[Schema=\"public\",Item=\"dim_teams\"]}[Data]\n",
+                "in\n",
+                "    public_dim_teams\n"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_venues",
+        "columns": [
+          {
+            "name": "venue_name",
+            "dataType": "string",
+            "sourceColumn": "venue_name",
+            "isNullable": false
+          },
+          {
+            "name": "city",
+            "dataType": "string",
+            "sourceColumn": "city",
+            "isNullable": true
+          },
+          {
+            "name": "country",
+            "dataType": "string",
+            "sourceColumn": "country",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_venues-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_dim_venues = Source{[Schema=\"public\",Item=\"dim_venues\"]}[Data]\n",
+                "in\n",
+                "    public_dim_venues\n"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_batting_scorecards",
+        "columns": [
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id",
+            "isNullable": false
+          },
+          {
+            "name": "match_id",
+            "dataType": "string",
+            "sourceColumn": "match_id",
+            "isNullable": false
+          },
+          {
+            "name": "innings",
+            "dataType": "int64",
+            "sourceColumn": "innings",
+            "isNullable": false
+          },
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "isNullable": false
+          },
+          {
+            "name": "player_name",
+            "dataType": "string",
+            "sourceColumn": "player_name",
+            "isNullable": false
+          },
+          {
+            "name": "player_id",
+            "dataType": "string",
+            "sourceColumn": "player_id",
+            "isNullable": false
+          },
+          {
+            "name": "batting_position",
+            "dataType": "int64",
+            "sourceColumn": "batting_position",
+            "isNullable": false
+          },
+          {
+            "name": "runs",
+            "dataType": "int64",
+            "sourceColumn": "runs",
+            "isNullable": false
+          },
+          {
+            "name": "balls_faced",
+            "dataType": "int64",
+            "sourceColumn": "balls_faced",
+            "isNullable": false
+          },
+          {
+            "name": "fours",
+            "dataType": "int64",
+            "sourceColumn": "fours",
+            "isNullable": false
+          },
+          {
+            "name": "sixes",
+            "dataType": "int64",
+            "sourceColumn": "sixes",
+            "isNullable": false
+          },
+          {
+            "name": "strike_rate",
+            "dataType": "double",
+            "sourceColumn": "strike_rate",
+            "isNullable": false
+          },
+          {
+            "name": "is_out",
+            "dataType": "boolean",
+            "sourceColumn": "is_out",
+            "isNullable": false
+          },
+          {
+            "name": "dismissal_kind",
+            "dataType": "string",
+            "sourceColumn": "dismissal_kind",
+            "isNullable": false
+          },
+          {
+            "name": "bowler",
+            "dataType": "string",
+            "sourceColumn": "bowler",
+            "isNullable": true
+          },
+          {
+            "name": "fielder",
+            "dataType": "string",
+            "sourceColumn": "fielder",
+            "isNullable": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_batting_scorecards-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_fact_batting_scorecards = Source{[Schema=\"public\",Item=\"fact_batting_scorecards\"]}[Data]\n",
+                "in\n",
+                "    public_fact_batting_scorecards\n"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_bowling_scorecards",
+        "columns": [
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id",
+            "isNullable": false
+          },
+          {
+            "name": "match_id",
+            "dataType": "string",
+            "sourceColumn": "match_id",
+            "isNullable": false
+          },
+          {
+            "name": "innings",
+            "dataType": "int64",
+            "sourceColumn": "innings",
+            "isNullable": false
+          },
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "isNullable": false
+          },
+          {
+            "name": "player_name",
+            "dataType": "string",
+            "sourceColumn": "player_name",
+            "isNullable": false
+          },
+          {
+            "name": "player_id",
+            "dataType": "string",
+            "sourceColumn": "player_id",
+            "isNullable": false
+          },
+          {
+            "name": "overs",
+            "dataType": "double",
+            "sourceColumn": "overs",
+            "isNullable": false
+          },
+          {
+            "name": "legal_balls",
+            "dataType": "int64",
+            "sourceColumn": "legal_balls",
+            "isNullable": false
+          },
+          {
+            "name": "maidens",
+            "dataType": "int64",
+            "sourceColumn": "maidens",
+            "isNullable": false
+          },
+          {
+            "name": "runs_conceded",
+            "dataType": "int64",
+            "sourceColumn": "runs_conceded",
+            "isNullable": false
+          },
+          {
+            "name": "wickets",
+            "dataType": "int64",
+            "sourceColumn": "wickets",
+            "isNullable": false
+          },
+          {
+            "name": "economy_rate",
+            "dataType": "double",
+            "sourceColumn": "economy_rate",
+            "isNullable": false
+          },
+          {
+            "name": "dots",
+            "dataType": "int64",
+            "sourceColumn": "dots",
+            "isNullable": false
+          },
+          {
+            "name": "wides",
+            "dataType": "int64",
+            "sourceColumn": "wides",
+            "isNullable": false
+          },
+          {
+            "name": "no_balls",
+            "dataType": "int64",
+            "sourceColumn": "no_balls",
+            "isNullable": false
+          },
+          {
+            "name": "fours_conceded",
+            "dataType": "int64",
+            "sourceColumn": "fours_conceded",
+            "isNullable": false
+          },
+          {
+            "name": "sixes_conceded",
+            "dataType": "int64",
+            "sourceColumn": "sixes_conceded",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_bowling_scorecards-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_fact_bowling_scorecards = Source{[Schema=\"public\",Item=\"fact_bowling_scorecards\"]}[Data]\n",
+                "in\n",
+                "    public_fact_bowling_scorecards\n"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_deliveries",
+        "columns": [
+          {
+            "name": "delivery_id",
+            "dataType": "string",
+            "sourceColumn": "delivery_id",
+            "isNullable": false
+          },
+          {
+            "name": "match_id",
+            "dataType": "string",
+            "sourceColumn": "match_id",
+            "isNullable": false
+          },
+          {
+            "name": "innings",
+            "dataType": "int64",
+            "sourceColumn": "innings",
+            "isNullable": false
+          },
+          {
+            "name": "batting_team",
+            "dataType": "string",
+            "sourceColumn": "batting_team",
+            "isNullable": false
+          },
+          {
+            "name": "bowling_team",
+            "dataType": "string",
+            "sourceColumn": "bowling_team",
+            "isNullable": false
+          },
+          {
+            "name": "over_number",
+            "dataType": "int64",
+            "sourceColumn": "over_number",
+            "isNullable": false
+          },
+          {
+            "name": "ball_in_over",
+            "dataType": "int64",
+            "sourceColumn": "ball_in_over",
+            "isNullable": false
+          },
+          {
+            "name": "actual_delivery_str",
+            "dataType": "string",
+            "sourceColumn": "actual_delivery_str",
+            "isNullable": false
+          },
+          {
+            "name": "phase",
+            "dataType": "string",
+            "sourceColumn": "phase",
+            "isNullable": false
+          },
+          {
+            "name": "batter",
+            "dataType": "string",
+            "sourceColumn": "batter",
+            "isNullable": false
+          },
+          {
+            "name": "batter_id",
+            "dataType": "string",
+            "sourceColumn": "batter_id",
+            "isNullable": false
+          },
+          {
+            "name": "bowler",
+            "dataType": "string",
+            "sourceColumn": "bowler",
+            "isNullable": false
+          },
+          {
+            "name": "bowler_id",
+            "dataType": "string",
+            "sourceColumn": "bowler_id",
+            "isNullable": false
+          },
+          {
+            "name": "non_striker",
+            "dataType": "string",
+            "sourceColumn": "non_striker",
+            "isNullable": false
+          },
+          {
+            "name": "non_striker_id",
+            "dataType": "string",
+            "sourceColumn": "non_striker_id",
+            "isNullable": false
+          },
+          {
+            "name": "batter_runs",
+            "dataType": "int64",
+            "sourceColumn": "batter_runs",
+            "isNullable": false
+          },
+          {
+            "name": "extra_runs",
+            "dataType": "int64",
+            "sourceColumn": "extra_runs",
+            "isNullable": false
+          },
+          {
+            "name": "total_runs",
+            "dataType": "int64",
+            "sourceColumn": "total_runs",
+            "isNullable": false
+          },
+          {
+            "name": "is_legal_delivery",
+            "dataType": "boolean",
+            "sourceColumn": "is_legal_delivery",
+            "isNullable": false
+          },
+          {
+            "name": "extra_type",
+            "dataType": "string",
+            "sourceColumn": "extra_type",
+            "isNullable": true
+          },
+          {
+            "name": "is_boundary_four",
+            "dataType": "boolean",
+            "sourceColumn": "is_boundary_four",
+            "isNullable": false
+          },
+          {
+            "name": "is_boundary_six",
+            "dataType": "boolean",
+            "sourceColumn": "is_boundary_six",
+            "isNullable": false
+          },
+          {
+            "name": "is_dot_ball",
+            "dataType": "boolean",
+            "sourceColumn": "is_dot_ball",
+            "isNullable": false
+          },
+          {
+            "name": "is_wicket",
+            "dataType": "boolean",
+            "sourceColumn": "is_wicket",
+            "isNullable": false
+          },
+          {
+            "name": "wicket_kind",
+            "dataType": "string",
+            "sourceColumn": "wicket_kind",
+            "isNullable": true
+          },
+          {
+            "name": "player_dismissed",
+            "dataType": "string",
+            "sourceColumn": "player_dismissed",
+            "isNullable": true
+          },
+          {
+            "name": "fielder_involved",
+            "dataType": "string",
+            "sourceColumn": "fielder_involved",
+            "isNullable": true
+          },
+          {
+            "name": "is_super_over",
+            "dataType": "boolean",
+            "sourceColumn": "is_super_over",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_deliveries-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_fact_deliveries = Source{[Schema=\"public\",Item=\"fact_deliveries\"]}[Data]\n",
+                "in\n",
+                "    public_fact_deliveries\n"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_match_summaries",
+        "columns": [
+          {
+            "name": "id",
+            "dataType": "int64",
+            "sourceColumn": "id",
+            "isNullable": false
+          },
+          {
+            "name": "match_id",
+            "dataType": "string",
+            "sourceColumn": "match_id",
+            "isNullable": false
+          },
+          {
+            "name": "innings",
+            "dataType": "int64",
+            "sourceColumn": "innings",
+            "isNullable": false
+          },
+          {
+            "name": "batting_team",
+            "dataType": "string",
+            "sourceColumn": "batting_team",
+            "isNullable": false
+          },
+          {
+            "name": "bowling_team",
+            "dataType": "string",
+            "sourceColumn": "bowling_team",
+            "isNullable": false
+          },
+          {
+            "name": "total_runs",
+            "dataType": "int64",
+            "sourceColumn": "total_runs",
+            "isNullable": false
+          },
+          {
+            "name": "total_wickets",
+            "dataType": "int64",
+            "sourceColumn": "total_wickets",
+            "isNullable": false
+          },
+          {
+            "name": "legal_deliveries",
+            "dataType": "int64",
+            "sourceColumn": "legal_deliveries",
+            "isNullable": false
+          },
+          {
+            "name": "total_overs",
+            "dataType": "double",
+            "sourceColumn": "total_overs",
+            "isNullable": false
+          },
+          {
+            "name": "extras_total",
+            "dataType": "int64",
+            "sourceColumn": "extras_total",
+            "isNullable": false
+          },
+          {
+            "name": "extras_wides",
+            "dataType": "int64",
+            "sourceColumn": "extras_wides",
+            "isNullable": false
+          },
+          {
+            "name": "extras_noballs",
+            "dataType": "int64",
+            "sourceColumn": "extras_noballs",
+            "isNullable": false
+          },
+          {
+            "name": "extras_byes",
+            "dataType": "int64",
+            "sourceColumn": "extras_byes",
+            "isNullable": false
+          },
+          {
+            "name": "extras_legbyes",
+            "dataType": "int64",
+            "sourceColumn": "extras_legbyes",
+            "isNullable": false
+          },
+          {
+            "name": "extras_penalty",
+            "dataType": "int64",
+            "sourceColumn": "extras_penalty",
+            "isNullable": false
+          },
+          {
+            "name": "run_rate",
+            "dataType": "double",
+            "sourceColumn": "run_rate",
+            "isNullable": false
+          },
+          {
+            "name": "is_super_over",
+            "dataType": "boolean",
+            "sourceColumn": "is_super_over",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_match_summaries-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    public_fact_match_summaries = Source{[Schema=\"public\",Item=\"fact_match_summaries\"]}[Data]\n",
+                "in\n",
+                "    public_fact_match_summaries\n"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Tournament Matches Scheduled",
+            "expression": "COUNTROWS(dim_matches)",
+            "formatString": "#,##0",
+            "description": "Total scheduled fixtures in tournament (55 matches at match grain)"
+          },
+          {
+            "name": "Tournament Matches Completed",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] IN {\"runs\", \"wickets\", \"tie_super_over\"})",
+            "formatString": "#,##0",
+            "description": "Total fixtures completed with a definitive result (53 matches at match grain)"
+          },
+          {
+            "name": "Tournament Matches Abandoned",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = \"no result\")",
+            "formatString": "#,##0",
+            "description": "Fixtures abandoned due to rain without result (exactly 2 matches: IRE v ZIM, PAK v NZ)"
+          },
+          {
+            "name": "Tournament Matches Won",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] IN {\"runs\", \"wickets\", \"tie_super_over\"})",
+            "formatString": "#,##0",
+            "description": "Total fixtures that produced a winning team (53 matches at match grain)"
+          },
+          {
+            "name": "Tournament Matches Lost",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] IN {\"runs\", \"wickets\", \"tie_super_over\"})",
+            "formatString": "#,##0",
+            "description": "Total fixtures that produced a losing team (53 matches at match grain)"
+          },
+          {
+            "name": "Total Tournament Runs",
+            "expression": "CALCULATE(SUM(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())",
+            "formatString": "#,##0",
+            "description": "Total runs scored across all 53 completed matches excluding super overs (17,582 runs)"
+          },
+          {
+            "name": "Total Tournament Wickets",
+            "expression": "CALCULATE(SUM(fact_match_summaries[total_wickets]), fact_match_summaries[is_super_over] = FALSE())",
+            "formatString": "#,##0",
+            "description": "Total wickets fallen across all 53 completed matches excluding super overs (702 wickets)"
+          },
+          {
+            "name": "Tournament Legal Deliveries (Summary)",
+            "expression": "CALCULATE(SUM(fact_match_summaries[legal_deliveries]), fact_match_summaries[is_super_over] = FALSE())",
+            "formatString": "#,##0",
+            "description": "Total summary-derived legal deliveries bowled across 53 completed matches (12,059 deliveries)"
+          },
+          {
+            "name": "Total Legal Overs Bowled",
+            "expression": "DIVIDE([Tournament Legal Deliveries (Summary)], 6, 0)",
+            "formatString": "#,##0.0",
+            "description": "Total legal overs completed across 53 matches (2,009.8 overs)"
+          },
+          {
+            "name": "Tournament Run Rate",
+            "expression": "DIVIDE([Total Tournament Runs], [Total Legal Overs Bowled], 0)",
+            "formatString": "0.00",
+            "description": "Tournament overall scoring rate per over across 53 matches (8.75 rpo)"
+          },
+          {
+            "name": "Highest Match Score",
+            "expression": "VAR MaxRuns = CALCULATE(MAX(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())\nVAR TopRow = TOPN(1, FILTER(fact_match_summaries, fact_match_summaries[total_runs] = MaxRuns && fact_match_summaries[is_super_over] = FALSE()), fact_match_summaries[total_runs], DESC)\nVAR TeamName = MAXX(TopRow, fact_match_summaries[batting_team])\nVAR Opponent = MAXX(TopRow, fact_match_summaries[bowling_team])\nVAR Wickets = MAXX(TopRow, fact_match_summaries[total_wickets])\nRETURN\n    IF(NOT ISBLANK(MaxRuns), FORMAT(MaxRuns, \"#,##0\") & \"/\" & FORMAT(Wickets, \"0\") & \" (\" & TeamName & \" vs \" & Opponent & \")\", BLANK())",
+            "formatString": "@",
+            "description": "Highest score with runs, wickets, team and opponent (256/4 (India vs Zimbabwe))"
+          },
+          {
+            "name": "Bat First Wins",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = \"runs\")",
+            "formatString": "#,##0",
+            "description": "Matches won defending total at match grain (29 matches)"
+          },
+          {
+            "name": "Bat First Win %",
+            "expression": "DIVIDE([Bat First Wins], [Tournament Matches Completed], 0) * 100",
+            "formatString": "0.00'%'",
+            "description": "Percentage of completed matches won batting first (54.72%)"
+          },
+          {
+            "name": "Chase Wins",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = \"wickets\")",
+            "formatString": "#,##0",
+            "description": "Matches won chasing target at match grain (23 matches)"
+          },
+          {
+            "name": "Chase Win %",
+            "expression": "DIVIDE([Chase Wins], [Tournament Matches Completed], 0) * 100",
+            "formatString": "0.00'%'",
+            "description": "Percentage of completed matches won chasing (43.40%)"
+          },
+          {
+            "name": "Tie Super Over Wins",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[outcome_type] = \"tie_super_over\")",
+            "formatString": "#,##0",
+            "description": "Matches tied and decided via Super Over (1 match: SA vs AFG)"
+          },
+          {
+            "name": "Tie Super Over Win %",
+            "expression": "DIVIDE([Tie Super Over Wins], [Tournament Matches Completed], 0) * 100",
+            "formatString": "0.00'%'",
+            "description": "Percentage of matches decided by Super Over (1.89%)"
+          },
+          {
+            "name": "Toss Winner Match Wins",
+            "expression": "CALCULATE(COUNTROWS(dim_matches), dim_matches[toss_winner] = dim_matches[winner], dim_matches[outcome_type] IN {\"runs\", \"wickets\", \"tie_super_over\"})",
+            "formatString": "#,##0",
+            "description": "Matches where toss winner also won match (23 matches)"
+          },
+          {
+            "name": "Toss Winner Win %",
+            "expression": "DIVIDE([Toss Winner Match Wins], [Tournament Matches Completed], 0) * 100",
+            "formatString": "0.00'%'",
+            "description": "Toss win conversion percentage across 53 completed matches (43.40%)"
+          },
+          {
+            "name": "Total Team Wins",
+            "expression": "CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = TRUE())",
+            "formatString": "#,##0",
+            "description": "Total winning team performances across all teams (53 team wins)"
+          },
+          {
+            "name": "Total Team Losses",
+            "expression": "CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = FALSE(), bridge_match_teams[is_no_result] = FALSE())",
+            "formatString": "#,##0",
+            "description": "Total losing team performances across all teams (53 team losses)"
+          },
+          {
+            "name": "Selected Team Matches Scheduled",
+            "expression": "DISTINCTCOUNT(bridge_match_teams[match_id])",
+            "formatString": "#,##0",
+            "description": "Unique count of scheduled fixtures for selected team(s); evaluates to 55 when All Teams selected"
+          },
+          {
+            "name": "Selected Team Matches Completed",
+            "expression": "CALCULATE(DISTINCTCOUNT(bridge_match_teams[match_id]), bridge_match_teams[is_no_result] = FALSE())",
+            "formatString": "#,##0",
+            "description": "Unique count of completed fixtures with a result for selected team(s)"
+          },
+          {
+            "name": "Selected Team Matches Abandoned",
+            "expression": "CALCULATE(DISTINCTCOUNT(bridge_match_teams[match_id]), bridge_match_teams[is_no_result] = TRUE())",
+            "formatString": "#,##0",
+            "description": "Unique count of rain-abandoned matches for selected team(s) (1 each for ZIM and PAK; 2 overall)"
+          },
+          {
+            "name": "Selected Team Matches Won",
+            "expression": "CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = TRUE())",
+            "formatString": "#,##0",
+            "description": "Total matches won by selected team(s)"
+          },
+          {
+            "name": "Selected Team Losses",
+            "expression": "CALCULATE(COUNTROWS(bridge_match_teams), bridge_match_teams[is_winner] = FALSE(), bridge_match_teams[is_no_result] = FALSE())",
+            "formatString": "#,##0",
+            "description": "Total matches lost by selected team(s); evaluates to 53 losing team records when All Teams selected"
+          },
+          {
+            "name": "Tournament Points",
+            "expression": "([Selected Team Matches Won] * 2) + ([Selected Team Matches Abandoned] * 1)",
+            "formatString": "#,##0",
+            "description": "Official ICC tournament points: 2 for Win, 1 for Abandoned (No Result), 0 for Loss"
+          },
+          {
+            "name": "Selected Team Runs Scored",
+            "expression": "CALCULATE(\n    SUM(fact_match_summaries[total_runs]),\n    TREATAS(VALUES(bridge_match_teams[match_id]), dim_matches[match_id]),\n    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[batting_team]),\n    fact_match_summaries[is_super_over] = FALSE()\n)",
+            "formatString": "#,##0",
+            "description": "Total runs scored by selected team in regular 20-over innings"
+          },
+          {
+            "name": "Selected Team Opponent Runs",
+            "expression": "CALCULATE(\n    SUM(fact_match_summaries[total_runs]),\n    TREATAS(VALUES(bridge_match_teams[match_id]), dim_matches[match_id]),\n    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[bowling_team]),\n    fact_match_summaries[is_super_over] = FALSE()\n)",
+            "formatString": "#,##0",
+            "description": "Total runs conceded by selected team to opponents in regular 20-over innings"
+          },
+          {
+            "name": "Selected Team Match Runs",
+            "expression": "CALCULATE(\n    SUM(fact_match_summaries[total_runs]),\n    TREATAS(VALUES(bridge_match_teams[match_id]), dim_matches[match_id]),\n    fact_match_summaries[is_super_over] = FALSE()\n)",
+            "formatString": "#,##0",
+            "description": "Total match runs scored across both innings in fixtures involving selected team"
+          },
+          {
+            "name": "Selected Team Bat First Wins",
+            "expression": "VAR TargetMatches = \n    CALCULATETABLE(\n        VALUES(dim_matches[match_id]),\n        dim_matches[outcome_type] = \"runs\"\n    )\nRETURN\n    CALCULATE(\n        COUNTROWS(bridge_match_teams),\n        bridge_match_teams[is_winner] = TRUE(),\n        TREATAS(TargetMatches, bridge_match_teams[match_id])\n    )",
+            "formatString": "#,##0",
+            "description": "Matches won defending total by selected team; transfers runs match IDs back to bridge"
+          },
+          {
+            "name": "Selected Team Chase Wins",
+            "expression": "VAR TargetMatches = \n    CALCULATETABLE(\n        VALUES(dim_matches[match_id]),\n        dim_matches[outcome_type] = \"wickets\"\n    )\nRETURN\n    CALCULATE(\n        COUNTROWS(bridge_match_teams),\n        bridge_match_teams[is_winner] = TRUE(),\n        TREATAS(TargetMatches, bridge_match_teams[match_id])\n    )",
+            "formatString": "#,##0",
+            "description": "Matches won chasing target by selected team; transfers wickets match IDs back to bridge"
+          },
+          {
+            "name": "Selected Team Super Over Wins",
+            "expression": "VAR TargetMatches = \n    CALCULATETABLE(\n        VALUES(dim_matches[match_id]),\n        dim_matches[outcome_type] = \"tie_super_over\"\n    )\nRETURN\n    CALCULATE(\n        COUNTROWS(bridge_match_teams),\n        bridge_match_teams[is_winner] = TRUE(),\n        TREATAS(TargetMatches, bridge_match_teams[match_id])\n    )",
+            "formatString": "#,##0",
+            "description": "Matches tied and won via Super Over by selected team (SA vs AFG); transfers tie match IDs back to bridge"
+          },
+          {
+            "name": "Selected Team Matches at Venue",
+            "expression": "VAR VenueMatches = VALUES(dim_matches[match_id])\nRETURN\n    CALCULATE(\n        DISTINCTCOUNT(bridge_match_teams[match_id]),\n        TREATAS(VenueMatches, bridge_match_teams[match_id])\n    )",
+            "formatString": "#,##0",
+            "description": "Matches played by selected team at current venue context; BLANK for venues not visited"
+          },
+          {
+            "name": "Selected Team Wins at Venue",
+            "expression": "VAR VenueMatches = VALUES(dim_matches[match_id])\nRETURN\n    CALCULATE(\n        COUNTROWS(bridge_match_teams),\n        bridge_match_teams[is_winner] = TRUE(),\n        TREATAS(VenueMatches, bridge_match_teams[match_id])\n    )",
+            "formatString": "#,##0",
+            "description": "Matches won by selected team at current venue context"
+          },
+          {
+            "name": "Team Balls Faced (ICC NRR)",
+            "expression": "CALCULATE(\n    SUMX(\n        fact_match_summaries,\n        IF(fact_match_summaries[total_wickets] = 10, 120, fact_match_summaries[legal_deliveries])\n    ),\n    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[batting_team]),\n    fact_match_summaries[is_super_over] = FALSE()\n)",
+            "formatString": "#,##0",
+            "description": "Legal balls faced with ICC 120-ball all-out rule applied"
+          },
+          {
+            "name": "Team Balls Bowled (ICC NRR)",
+            "expression": "CALCULATE(\n    SUMX(\n        fact_match_summaries,\n        IF(fact_match_summaries[total_wickets] = 10, 120, fact_match_summaries[legal_deliveries])\n    ),\n    TREATAS(VALUES(dim_teams[team_name]), fact_match_summaries[bowling_team]),\n    fact_match_summaries[is_super_over] = FALSE()\n)",
+            "formatString": "#,##0",
+            "description": "Legal balls bowled with ICC 120-ball opponent all-out rule applied"
+          },
+          {
+            "name": "Net Run Rate (ICC)",
+            "expression": "VAR RunsFor = [Selected Team Runs Scored]\nVAR BallsFor = [Team Balls Faced (ICC NRR)]\nVAR OversFor = DIVIDE(BallsFor, 6, 0)\nVAR RunsAgainst = [Selected Team Opponent Runs]\nVAR BallsAgainst = [Team Balls Bowled (ICC NRR)]\nVAR OversAgainst = DIVIDE(BallsAgainst, 6, 0)\nRETURN\n    IF(\n        OversFor > 0 && OversAgainst > 0,\n        DIVIDE(RunsFor, OversFor, 0) - DIVIDE(RunsAgainst, OversAgainst, 0),\n        BLANK()\n    )",
+            "formatString": "+0.000;-0.000;0.000",
+            "description": "Official ICC Net Run Rate (Run Rate For minus Run Rate Against)"
+          }
+        ]
+      },
+      {
+        "name": "bridge_match_teams",
+        "columns": [
+          {
+            "name": "match_id",
+            "dataType": "string",
+            "sourceColumn": "match_id",
+            "isNullable": false
+          },
+          {
+            "name": "team_name",
+            "dataType": "string",
+            "sourceColumn": "team_name",
+            "isNullable": false
+          },
+          {
+            "name": "opponent_team",
+            "dataType": "string",
+            "sourceColumn": "opponent_team",
+            "isNullable": false
+          },
+          {
+            "name": "team_role",
+            "dataType": "string",
+            "sourceColumn": "team_role",
+            "isNullable": false
+          },
+          {
+            "name": "winner",
+            "dataType": "string",
+            "sourceColumn": "winner",
+            "isNullable": false
+          },
+          {
+            "name": "outcome_type",
+            "dataType": "string",
+            "sourceColumn": "outcome_type",
+            "isNullable": false
+          },
+          {
+            "name": "venue",
+            "dataType": "string",
+            "sourceColumn": "venue",
+            "isNullable": false
+          },
+          {
+            "name": "is_winner",
+            "dataType": "boolean",
+            "sourceColumn": "is_winner",
+            "isNullable": false
+          },
+          {
+            "name": "is_no_result",
+            "dataType": "boolean",
+            "sourceColumn": "is_no_result",
+            "isNullable": false
+          }
+        ],
+        "partitions": [
+          {
+            "name": "bridge_match_teams-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let\n",
+                "    Source = PostgreSQL.Database(\"localhost\", \"t20_worldcup_2026\"),\n",
+                "    Matches = Source{[Schema=\"public\",Item=\"dim_matches\"]}[Data],\n",
+                "    T1 = Table.SelectColumns(Matches, {\"match_id\", \"team1\", \"team2\", \"winner\", \"outcome_type\", \"venue\"}),\n",
+                "    T1_Renamed = Table.RenameColumns(T1, {{\"team1\", \"team_name\"}, {\"team2\", \"opponent_team\"}}),\n",
+                "    T1_Role = Table.AddColumn(T1_Renamed, \"team_role\", each \"team1\", type text),\n",
+                "    \n",
+                "    T2 = Table.SelectColumns(Matches, {\"match_id\", \"team1\", \"team2\", \"winner\", \"outcome_type\", \"venue\"}),\n",
+                "    T2_Renamed = Table.RenameColumns(T2, {{\"team2\", \"team_name\"}, {\"team1\", \"opponent_team\"}}),\n",
+                "    T2_Role = Table.AddColumn(T2_Renamed, \"team_role\", each \"team2\", type text),\n",
+                "    \n",
+                "    Combined = Table.Combine({T1_Role, T2_Role}),\n",
+                "    AddIsWinner = Table.AddColumn(Combined, \"is_winner\", each [winner] = [team_name], type logical),\n",
+                "    AddIsNoResult = Table.AddColumn(AddIsWinner, \"is_no_result\", each [outcome_type] = \"no result\", type logical)\n",
+                "in\n",
+                "    AddIsNoResult\n"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "dim_teams_to_bridge_active",
+        "fromTable": "bridge_match_teams",
+        "fromColumn": "team_name",
+        "toTable": "dim_teams",
+        "toColumn": "team_name",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_matches_to_bridge_active",
+        "fromTable": "bridge_match_teams",
+        "fromColumn": "match_id",
+        "toTable": "dim_matches",
+        "toColumn": "match_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_teams_to_dim_players_team_active",
+        "fromTable": "dim_players",
+        "fromColumn": "team",
+        "toTable": "dim_teams",
+        "toColumn": "team_name",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_venues_to_dim_matches_venue_active",
+        "fromTable": "dim_matches",
+        "fromColumn": "venue",
+        "toTable": "dim_venues",
+        "toColumn": "venue_name",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_matches_to_fact_summaries_active",
+        "fromTable": "fact_match_summaries",
+        "fromColumn": "match_id",
+        "toTable": "dim_matches",
+        "toColumn": "match_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_matches_to_fact_batting_active",
+        "fromTable": "fact_batting_scorecards",
+        "fromColumn": "match_id",
+        "toTable": "dim_matches",
+        "toColumn": "match_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_matches_to_fact_bowling_active",
+        "fromTable": "fact_bowling_scorecards",
+        "fromColumn": "match_id",
+        "toTable": "dim_matches",
+        "toColumn": "match_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_matches_to_fact_deliveries_active",
+        "fromTable": "fact_deliveries",
+        "fromColumn": "match_id",
+        "toTable": "dim_matches",
+        "toColumn": "match_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_players_to_fact_batting_active",
+        "fromTable": "fact_batting_scorecards",
+        "fromColumn": "player_id",
+        "toTable": "dim_players",
+        "toColumn": "player_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_players_to_fact_bowling_active",
+        "fromTable": "fact_bowling_scorecards",
+        "fromColumn": "player_id",
+        "toTable": "dim_players",
+        "toColumn": "player_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_players_to_fact_deliveries_batter_active",
+        "fromTable": "fact_deliveries",
+        "fromColumn": "batter_id",
+        "toTable": "dim_players",
+        "toColumn": "player_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "dim_players_to_fact_deliveries_bowler_inactive",
+        "fromTable": "fact_deliveries",
+        "fromColumn": "bowler_id",
+        "toTable": "dim_players",
+        "toColumn": "player_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": false
+      },
+      {
+        "name": "dim_players_to_fact_deliveries_non_striker_inactive",
+        "fromTable": "fact_deliveries",
+        "fromColumn": "non_striker_id",
+        "toTable": "dim_players",
+        "toColumn": "player_id",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": false
+      }
+    ]
+  }
+}

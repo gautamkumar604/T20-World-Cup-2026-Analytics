@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "artifacts": [
+    {
+      "report": {
+        "path": "T20_World_Cup_2026_Analytics.Report"
+      }
+    },
+    {
+      "semanticModel": {
+        "path": "T20_World_Cup_2026_Analytics.SemanticModel"
+      }
+    }
+  ],
+  "settings": {}
+}

@@ -1,22 +1,33 @@
 """
 Automated database validation, referential integrity, and view testing suite.
+
+Executes non-destructive read-only audits against the database and tests
+loading idempotency in an isolated temporary test database to guarantee
+zero modification or deletion of production warehouse files.
 """
 
 import unittest
-from sqlalchemy import text
+import tempfile
+from pathlib import Path
+from sqlalchemy import text, create_engine
+
+from config.settings import DATA_DIR
 from src.database.db_connection import get_db_engine
 from src.database.loader import DatabaseLoader
 
 
 class TestDatabaseIntegrity(unittest.TestCase):
-    """Test suite verifying database loading, foreign keys, idempotency, and SQL views."""
+    """Test suite verifying existing warehouse record parity, foreign keys, and SQL views."""
 
     @classmethod
     def setUpClass(cls):
-        """Initializes database engine and ensures schema and data are loaded."""
-        cls.engine = get_db_engine()
+        """Connects strictly read-only to the existing SQLite warehouse."""
+        sqlite_file = DATA_DIR / "t20_worldcup_2026.db"
+        if not sqlite_file.exists():
+            raise unittest.SkipTest(f"Warehouse database missing at {sqlite_file}")
+        
+        cls.engine = get_db_engine(f"sqlite:///{sqlite_file.as_posix()}")
         cls.loader = DatabaseLoader(engine=cls.engine)
-        cls.pipeline_results = cls.loader.run_pipeline()
 
     def test_record_counts_parity(self):
         """Verifies that database counts match CSV counts exactly across all tables."""
@@ -47,24 +58,38 @@ class TestDatabaseIntegrity(unittest.TestCase):
             if check_name != "all_referential_checks_passed":
                 self.assertEqual(count, 0, f"Orphan records found for {check_name}: {count}")
 
-    def test_idempotent_reloading(self):
-        """Verifies that re-running ingestion does not cause duplicates."""
-        initial_counts = {}
-        with self.engine.connect() as conn:
-            for table in self.loader.INGESTION_ORDER:
-                initial_counts[table] = conn.execute(text(f"SELECT COUNT(*) FROM {table}")).scalar()
+    def test_idempotent_reloading_in_temp_database(self):
+        """
+        Verifies idempotency in an isolated temporary database.
+        Guarantees existing production data/t20_worldcup_2026.db is NOT modified.
+        """
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            temp_db = Path(tmp_dir) / "temp_warehouse.db"
+            temp_url = f"sqlite:///{temp_db.as_posix()}"
+            temp_engine = create_engine(temp_url)
+            temp_loader = DatabaseLoader(engine=temp_engine)
 
-        # Re-run loading
-        self.loader.load_data()
+            # First load
+            temp_loader.deploy_schema()
+            temp_loader.load_data()
 
-        with self.engine.connect() as conn:
-            for table in self.loader.INGESTION_ORDER:
-                post_count = conn.execute(text(f"SELECT COUNT(*) FROM {table}")).scalar()
-                self.assertEqual(
-                    post_count,
-                    initial_counts[table],
-                    f"Duplicate records introduced in {table} after reloading!",
-                )
+            initial_counts = {}
+            with temp_engine.connect() as conn:
+                for table in temp_loader.INGESTION_ORDER:
+                    initial_counts[table] = conn.execute(text(f"SELECT COUNT(*) FROM {table}")).scalar()
+
+            # Second load (idempotency check)
+            temp_loader.load_data()
+
+            with temp_engine.connect() as conn:
+                for table in temp_loader.INGESTION_ORDER:
+                    post_count = conn.execute(text(f"SELECT COUNT(*) FROM {table}")).scalar()
+                    self.assertEqual(
+                        post_count,
+                        initial_counts[table],
+                        f"Duplicate records introduced in {table} after reloading!",
+                    )
+            temp_engine.dispose()
 
     def test_analytical_views_execution(self):
         """Verifies that all 10 analytical SQL views can be queried without errors."""

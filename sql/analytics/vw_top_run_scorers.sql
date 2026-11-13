@@ -35,3 +35,4 @@ SELECT
 FROM fact_batting_scorecards b
 GROUP BY b.player_id, b.player_name, b.team
 ORDER BY total_runs DESC, strike_rate DESC;
+

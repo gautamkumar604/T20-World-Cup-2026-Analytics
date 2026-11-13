@@ -32,3 +32,4 @@ LEFT JOIN dim_matches m ON v.venue_name = m.venue
 LEFT JOIN innings_scores i ON m.match_id = i.match_id
 GROUP BY v.venue_name, v.city, v.country
 ORDER BY total_matches_scheduled DESC;
+

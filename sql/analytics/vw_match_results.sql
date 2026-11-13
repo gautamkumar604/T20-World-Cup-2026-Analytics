@@ -26,3 +26,4 @@ SELECT
     m.source_note
 FROM dim_matches m
 ORDER BY m.match_date ASC, m.match_number ASC;
+

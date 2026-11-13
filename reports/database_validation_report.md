@@ -1,6 +1,6 @@
 # PostgreSQL Relational Data Warehouse — Ingestion & Validation Report
 
-**Database URL**: `sqlite:///D:/my_projects/GGV_projects/T20-World-Cup-2026-Analytics/data/t20_worldcup_2026.db`  
+**Database URL**: `postgresql+psycopg2://postgres:***@localhost:5432/t20_worldcup_2026`  
 **Status**: `SUCCESS`  
 
 ---

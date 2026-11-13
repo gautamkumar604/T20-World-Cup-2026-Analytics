@@ -21,3 +21,4 @@ SELECT
 FROM dim_matches m
 WHERE m.toss_decision IS NOT NULL
 GROUP BY m.toss_decision;
+

@@ -56,3 +56,4 @@ FROM match_outcomes mo
 LEFT JOIN team_runs tr ON mo.team_name = tr.team_name
 GROUP BY mo.team_name, mo.group_2026, tr.total_runs_scored, tr.total_balls_batted, tr.total_wickets_lost
 ORDER BY wins DESC, win_percentage DESC;
+

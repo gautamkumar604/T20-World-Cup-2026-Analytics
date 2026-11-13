@@ -39,3 +39,4 @@ FROM fact_batting_scorecards b
 GROUP BY b.player_id, b.player_name, b.team
 HAVING SUM(b.balls_faced) >= 10
 ORDER BY runs DESC;
+
