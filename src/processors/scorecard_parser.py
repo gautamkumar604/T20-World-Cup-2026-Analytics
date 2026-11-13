@@ -224,3 +224,4 @@ class ScorecardParser:
                 )
 
         return {"batting": batting_records, "bowling": bowling_records}
+

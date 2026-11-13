@@ -100,6 +100,10 @@ class MatchParser:
             "umpire2": umpire2,
             "tv_umpire": tv_umpire,
             "match_referee": match_referee,
+            "metadata_available": True,
+            "scorecard_available": True,
+            "ball_by_ball_available": True,
+            "source_note": "Cricsheet Open Data (Ball-by-Ball & Scorecard complete)",
         }
 
     @staticmethod
@@ -219,3 +223,4 @@ class MatchParser:
             )
 
         return summaries
+

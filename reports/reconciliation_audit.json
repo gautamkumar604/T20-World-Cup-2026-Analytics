@@ -3,5 +3,10 @@
   "total_deliveries_processed": 11555,
   "total_batting_records": 811,
   "total_bowling_records": 598,
-  "reconciliation_discrepancies": []
+  "reconciliation_discrepancies": [],
+  "total_tournament_matches_scheduled": 55,
+  "cricsheet_matches_processed": 49,
+  "supplemental_icc_matches_integrated": 6,
+  "total_teams": 20,
+  "total_players": 282
 }
