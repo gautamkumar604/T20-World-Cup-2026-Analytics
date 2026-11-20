@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "HeaderBanner_Standings",
+  "position": {
+    "x": 20,
+    "y": 10,
+    "z": 10,
+    "height": 60,
+    "width": 1240
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "ICC Men's T20 World Cup 2026 — Official Tournament Standings & Qualification\n",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "17pt",
+                      "fontWeight": "bold",
+                      "color": "#1A365D"
+                    }
+                  },
+                  {
+                    "value": "Official Clause 16.10 Net Run Rate | Exact Rational Tie-Breaking Engine | Super 8 Qualification Pathway",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#4A5568"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

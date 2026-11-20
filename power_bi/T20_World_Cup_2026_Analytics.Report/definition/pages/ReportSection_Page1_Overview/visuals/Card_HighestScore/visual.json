@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Card_HighestScore",
+  "position": {
+    "x": 990.7275441080792,
+    "y": 151.51226063398707,
+    "z": 9000,
+    "height": 116.30166485284924,
+    "width": 280.07909474785362
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Highest Match Score"
+                }
+              },
+              "queryRef": "fact_match_summaries.Highest Match Score",
+              "nativeQueryRef": "Highest Match Score"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "69c132cd8ac5773d9b61",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Highest Match Score"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

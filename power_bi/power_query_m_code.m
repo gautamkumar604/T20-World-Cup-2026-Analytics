@@ -59,3 +59,34 @@ let
 in
     public_fact_deliveries
 
+// Table: view_tournament_standings
+let
+    Source = PostgreSQL.Database("localhost", "t20_worldcup_2026"),
+    public_view_tournament_standings = Source{[Schema="public",Item="view_tournament_standings"]}[Data],
+    #"Changed Type" = Table.TransformColumnTypes(public_view_tournament_standings,{
+        {"stage_normalized", type text},
+        {"group_name", type text},
+        {"pool_rank", Int64.Type},
+        {"team_name", type text},
+        {"played", Int64.Type},
+        {"wins", Int64.Type},
+        {"losses", Int64.Type},
+        {"no_result", Int64.Type},
+        {"points", Int64.Type},
+        {"nrr_display", type number},
+        {"safe_h2h_points", Int64.Type},
+        {"h2h_nrr_display", type number},
+        {"icc_rank", Int64.Type},
+        {"resolution_step", type text},
+        {"qualification_status", type text},
+        {"runs_scored", type number},
+        {"balls_faced", Int64.Type},
+        {"runs_conceded", type number},
+        {"balls_bowled", Int64.Type},
+        {"nrr_num", Int64.Type},
+        {"nrr_den", Int64.Type},
+        {"nrr_canon_num", Int64.Type},
+        {"nrr_canon_den", Int64.Type}
+    })
+in
+    #"Changed Type"

@@ -1,0 +1,21 @@
+[2026-11-15 03:41:02.317] Starting D2.1 Schema Migration...
+[2026-11-15 03:41:02.324] D2.1 Schema Migration Committed.
+[2026-11-15 03:41:02.352] Columns in dim_matches: [('dls_abandonment_overs', 'numeric'), ('dls_allocated_overs', 'numeric'), ('dls_par_score', 'integer'), ('is_dls_abandoned', 'boolean')]
+[2026-11-15 03:41:02.357] D2.2 Rows needing backfill (is_dls_applied=TRUE): 0
+[2026-11-15 03:41:02.357] D2.2 Non-null DLS cols count: 0
+[2026-11-15 03:41:02.357] D2.2 Verdict: Backfill not required (0 DLS matches).
+[2026-11-15 03:41:02.357] Starting D2.3 Deploy fn_calc_gcd...
+[2026-11-15 03:41:02.362] D2.3 fn_calc_gcd Committed.
+[2026-11-15 03:41:02.364] fn_calc_gcd INT64_MIN correctly raised exception: INT64_MIN not supported
+[2026-11-15 03:41:02.364] fn_calc_gcd tests: gcd(5250, 7920)=30 (expect 30), gcd(0, 57600)=57600 (expect 57600), gcd(120, 240)=120 (expect 120), INT64_MIN guard=True
+[2026-11-15 03:41:02.364] Starting D2.4 Deploy View (4.9.6.15 blueprint)...
+[2026-11-15 03:41:02.390] D2.4 View view_tournament_standings Committed.
+[2026-11-15 03:41:02.390] Starting D2.5 Post-Deployment Verification Queries...
+[2026-11-15 03:41:02.410] V1. Row count = 28 (Expected: 28)
+[2026-11-15 03:41:02.429] V2. Group composition: [('Group Stage', 'A', 5), ('Group Stage', 'B', 5), ('Group Stage', 'C', 5), ('Group Stage', 'D', 5), ('Super 8', '1', 4), ('Super 8', '2', 4)]
+[2026-11-15 03:41:02.444] V3. Known team snapshots: [('Group Stage', 'A', 2, 'Pakistan', 6, Decimal('0.976'), 4139, 25440), ('Group Stage', 'B', 1, 'Zimbabwe', 7, Decimal('1.506'), 4789, 19080), ('Super 8', '1', 1, 'South Africa', 6, Decimal('2.259'), 61, 162), ('Super 8', '1', 2, 'India', 4, Decimal('0.106'), 283, 16020)]
+[2026-11-15 03:41:02.459] V4. Algebraic symmetry: [('1', Decimal('-0.00935105549915207872')), ('2', Decimal('0.06876982523865098602')), ('A', Decimal('-0.01021911788421222384')), ('B', Decimal('0.01251448698570167549')), ('C', Decimal('-0.01845886960605310674')), ('D', Decimal('0.04476881754123221280'))]
+[2026-11-15 03:41:02.459] V5. Post-deploy checksums: derived=26f2ebeea202a5ee11d47c872bce7326, native=ee687ff08dd9e93e3a58c56a369fbce7
+[2026-11-15 03:41:02.459] V5. Checksum match (derived): True
+[2026-11-15 03:41:02.459] V5. Checksum match (native): True
+[2026-11-15 03:41:02.459] ALL D2 VERIFICATIONS PASSED!

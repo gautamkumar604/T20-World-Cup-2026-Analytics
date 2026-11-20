@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Slicer_Stage",
+  "position": {
+    "x": 19.856353732123949,
+    "y": 102.43082409058282,
+    "z": 1000,
+    "height": 60,
+    "width": 215
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_matches"
+                    }
+                  },
+                  "Property": "Stage_Normalized"
+                }
+              },
+              "queryRef": "dim_matches.Stage_Normalized",
+              "nativeQueryRef": "Stage_Normalized",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "StageSyncGroup",
+      "fieldChanges": true,
+      "filterChanges": true
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f63aec2978d234612949",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_matches"
+              }
+            },
+            "Property": "Stage_Normalized"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

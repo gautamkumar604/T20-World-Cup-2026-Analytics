@@ -1,0 +1,159 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Table_DeathSpecialists",
+  "position": {
+    "x": 615,
+    "y": 420,
+    "z": 12000,
+    "height": 285,
+    "width": 585
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "bowler"
+                }
+              },
+              "queryRef": "fact_deliveries.bowler",
+              "nativeQueryRef": "bowler"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "bowling_team"
+                }
+              },
+              "queryRef": "fact_deliveries.bowling_team",
+              "nativeQueryRef": "bowling_team"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Bowler Death Overs Economy (Min 10 Balls)"
+                }
+              },
+              "queryRef": "fact_deliveries.Bowler Death Overs Economy (Min 10 Balls)",
+              "nativeQueryRef": "Bowler Death Overs Economy (Min 10 Balls)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Bowler Death Overs Wickets"
+                }
+              },
+              "queryRef": "fact_deliveries.Bowler Death Overs Wickets",
+              "nativeQueryRef": "Bowler Death Overs Wickets"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Bowler Death Overs Balls"
+                }
+              },
+              "queryRef": "fact_deliveries.Bowler Death Overs Balls",
+              "nativeQueryRef": "Bowler Death Overs Balls"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_deliveries"
+                  }
+                },
+                "Property": "Bowler Death Overs Economy (Min 10 Balls)"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "FilterTop5_DeathSpecialists",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_deliveries"
+              }
+            },
+            "Property": "bowler"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fact_deliveries",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "VisualTopN": {
+                  "ItemCount": 5
+                }
+              },
+              "Target": [
+                {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "f"
+                      }
+                    },
+                    "Property": "bowler"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

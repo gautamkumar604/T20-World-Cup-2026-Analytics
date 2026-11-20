@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Table_HighestStrikeRate",
+  "position": {
+    "x": 640,
+    "y": 372,
+    "z": 14000,
+    "height": 335,
+    "width": 300
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_batting_scorecards"
+                    }
+                  },
+                  "Property": "player_name"
+                }
+              },
+              "queryRef": "fact_batting_scorecards.player_name",
+              "nativeQueryRef": "player_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_batting_scorecards"
+                    }
+                  },
+                  "Property": "team"
+                }
+              },
+              "queryRef": "fact_batting_scorecards.team",
+              "nativeQueryRef": "team"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_batting_scorecards"
+                    }
+                  },
+                  "Property": "Player Strike Rate (Min 100 Runs)"
+                }
+              },
+              "queryRef": "fact_batting_scorecards.Player Strike Rate (Min 100 Runs)",
+              "nativeQueryRef": "Player Strike Rate (Min 100 Runs)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_batting_scorecards"
+                    }
+                  },
+                  "Property": "Player Total Runs"
+                }
+              },
+              "queryRef": "fact_batting_scorecards.Player Total Runs",
+              "nativeQueryRef": "Player Total Runs"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_batting_scorecards"
+                  }
+                },
+                "Property": "Player Strike Rate (Min 100 Runs)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "FilterTop5_Table_HighestStrikeRate",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_batting_scorecards"
+              }
+            },
+            "Property": "player_name"
+          }
+        },
+        "type": "TopN",
+        "howCreated": "User",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "fact_batting_scorecards",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Target": [
+                {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "t"
+                      }
+                    },
+                    "Property": "player_name"
+                  }
+                }
+              ],
+              "Condition": {
+                "VisualTopN": {
+                  "ItemCount": 5
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

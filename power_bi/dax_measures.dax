@@ -276,3 +276,309 @@ RETURN
         BLANK()
     )
 
+// ==============================================================================
+// Phase 4.2 Measures — Executive Dashboard KPIs, Venue & Player Leaderboards
+// ==============================================================================
+
+// Measure: Lowest Match Score
+// Description: Lowest match score formatted with runs, wickets, team, and opponent (95/10 (Sri Lanka vs England))
+Lowest Match Score =
+VAR MinRuns = CALCULATE(MIN(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())
+VAR TopRow = TOPN(1, FILTER(fact_match_summaries, fact_match_summaries[total_runs] = MinRuns && fact_match_summaries[is_super_over] = FALSE()), fact_match_summaries[total_runs], ASC)
+VAR TeamName = MAXX(TopRow, fact_match_summaries[batting_team])
+VAR Opponent = MAXX(TopRow, fact_match_summaries[bowling_team])
+VAR Wickets = MAXX(TopRow, fact_match_summaries[total_wickets])
+RETURN
+    IF(NOT ISBLANK(MinRuns), FORMAT(MinRuns, "#,##0") & "/" & FORMAT(Wickets, "0") & " (" & TeamName & " vs " & Opponent & ")", BLANK())
+
+// Measure: Lowest Team Score
+// Description: Numeric lowest team innings score in regular overs (95 runs)
+Lowest Team Score =
+CALCULATE(MIN(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Highest Team Score
+// Description: Numeric highest team innings score in regular overs (256 runs)
+Highest Team Score =
+CALCULATE(MAX(fact_match_summaries[total_runs]), fact_match_summaries[is_super_over] = FALSE())
+
+// Measure: Team Win Pct
+// Description: Percentage of completed fixtures won by the team (0.0% to 100.0%)
+Team Win Pct =
+VAR MatchesWon = [Selected Team Matches Won]
+VAR MatchesCompleted = [Selected Team Matches Completed]
+RETURN
+    IF(MatchesCompleted > 0, DIVIDE(MatchesWon, MatchesCompleted, BLANK()) * 100, BLANK())
+
+// Measure: Venue Avg First Innings Score
+// Description: Average runs scored in 1st innings at venue in completed regular matches
+Venue Avg First Innings Score =
+CALCULATE(
+    AVERAGE(fact_match_summaries[total_runs]),
+    fact_match_summaries[innings] = 1,
+    fact_match_summaries[is_super_over] = FALSE()
+)
+
+// Measure: Venue Avg Second Innings Score
+// Description: Average runs scored in 2nd innings at venue in completed regular matches
+Venue Avg Second Innings Score =
+CALCULATE(
+    AVERAGE(fact_match_summaries[total_runs]),
+    fact_match_summaries[innings] = 2,
+    fact_match_summaries[is_super_over] = FALSE()
+)
+
+// Measure: Player Total Runs
+// Description: Total runs scored by individual batter across tournament
+Player Total Runs =
+SUM(fact_batting_scorecards[runs])
+
+// Measure: Player Balls Faced
+// Description: Total legal deliveries faced by individual batter
+Player Balls Faced =
+SUM(fact_batting_scorecards[balls_faced])
+
+// Measure: Player Strike Rate
+// Description: Batting strike rate (runs per 100 balls)
+Player Strike Rate =
+DIVIDE(SUM(fact_batting_scorecards[runs]), SUM(fact_batting_scorecards[balls_faced]), BLANK()) * 100
+
+// Measure: Player Strike Rate (Min 100 Runs)
+// Description: Batting strike rate qualified with threshold >= 100 tournament runs
+Player Strike Rate (Min 100 Runs) =
+VAR RunsScored = SUM(fact_batting_scorecards[runs])
+VAR BallsFaced = SUM(fact_batting_scorecards[balls_faced])
+RETURN
+    IF(RunsScored >= 100, DIVIDE(RunsScored, BallsFaced, BLANK()) * 100, BLANK())
+
+// Measure: Player Total Wickets
+// Description: Total wickets taken by individual bowler
+Player Total Wickets =
+SUM(fact_bowling_scorecards[wickets])
+
+// Measure: Player Legal Balls
+// Description: Total legal balls bowled by individual bowler
+Player Legal Balls =
+SUM(fact_bowling_scorecards[legal_balls])
+
+// Measure: Player Overs Bowled
+// Description: Total overs bowled in decimal format
+Player Overs Bowled =
+DIVIDE(SUM(fact_bowling_scorecards[legal_balls]), 6, 0)
+
+// Measure: Player Runs Conceded
+// Description: Total runs conceded by bowler
+Player Runs Conceded =
+SUM(fact_bowling_scorecards[runs_conceded])
+
+// Measure: Player Economy Rate
+// Description: Bowling economy rate (runs conceded per 6 legal balls)
+Player Economy Rate =
+VAR RunsConc = SUM(fact_bowling_scorecards[runs_conceded])
+VAR LegalBalls = SUM(fact_bowling_scorecards[legal_balls])
+RETURN
+    IF(LegalBalls > 0, DIVIDE(RunsConc, (LegalBalls / 6.0), BLANK()), BLANK())
+
+// Measure: Player Economy Rate (Min 10 Overs)
+// Description: Bowling economy rate qualified with threshold >= 10 overs (60 legal balls)
+Player Economy Rate (Min 10 Overs) =
+VAR RunsConc = SUM(fact_bowling_scorecards[runs_conceded])
+VAR LegalBalls = SUM(fact_bowling_scorecards[legal_balls])
+RETURN
+    IF(LegalBalls >= 60, DIVIDE(RunsConc, (LegalBalls / 6.0), BLANK()), BLANK())
+
+
+
+// =============================================================================
+// PHASE 4.3: TACTICAL ANALYSIS MEASURES & CALCULATED COLUMNS
+// =============================================================================
+
+// Calculated Column: dim_matches[Toss Decision Label]
+// Description: Normalizes toss decision into clear presentation labels ("Bat First", "Bowl / Field First")
+Toss Decision Label = 
+IF(
+    ISBLANK(dim_matches[toss_decision]), 
+    BLANK(), 
+    IF(dim_matches[toss_decision] = "bat", "Bat First", "Bowl / Field First")
+)
+
+// Calculated Column: dim_matches[Toss Match Result]
+// Description: Evaluates whether the toss-winning team won or lost the match
+Toss Match Result = 
+IF(
+    ISBLANK(dim_matches[toss_decision]) || dim_matches[outcome_type] = "no result", 
+    BLANK(), 
+    IF(dim_matches[toss_winner] = dim_matches[winner], "Toss Winner Won", "Toss Loser Won")
+)
+
+// Measure: Toss Completed Matches
+// Description: Completed matches count with valid toss decision
+Toss Completed Matches = 
+CALCULATE(
+    COUNTROWS(dim_matches),
+    NOT(ISBLANK(dim_matches[toss_decision])),
+    dim_matches[outcome_type] <> "no result"
+)
+
+// Measure: Powerplay Run Rate
+// Description: Runs scored per 6 legal balls in Overs 1-6 (Powerplay)
+Powerplay Run Rate = 
+VAR TotalRuns = CALCULATE(SUM(fact_deliveries[total_runs]), fact_deliveries[phase] = "Powerplay", fact_deliveries[is_super_over] = FALSE())
+VAR LegalBalls = CALCULATE(COUNTROWS(fact_deliveries), fact_deliveries[phase] = "Powerplay", fact_deliveries[is_legal_delivery] = TRUE(), fact_deliveries[is_super_over] = FALSE())
+RETURN
+    DIVIDE(TotalRuns * 6.0, LegalBalls, BLANK())
+
+// Measure: Powerplay Wickets
+// Description: Total dismissals in Overs 1-6 (Powerplay)
+Powerplay Wickets = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Powerplay",
+    fact_deliveries[is_wicket] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Middle Overs Run Rate
+// Description: Runs scored per 6 legal balls in Overs 7-15 (Middle Overs)
+Middle Overs Run Rate = 
+VAR TotalRuns = CALCULATE(SUM(fact_deliveries[total_runs]), fact_deliveries[phase] = "Middle", fact_deliveries[is_super_over] = FALSE())
+VAR LegalBalls = CALCULATE(COUNTROWS(fact_deliveries), fact_deliveries[phase] = "Middle", fact_deliveries[is_legal_delivery] = TRUE(), fact_deliveries[is_super_over] = FALSE())
+RETURN
+    DIVIDE(TotalRuns * 6.0, LegalBalls, BLANK())
+
+// Measure: Middle Overs Wickets
+// Description: Total dismissals in Overs 7-15 (Middle Overs)
+Middle Overs Wickets = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Middle",
+    fact_deliveries[is_wicket] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Death Overs Run Rate
+// Description: Runs scored per 6 legal balls in Overs 16-20 (Death Overs)
+Death Overs Run Rate = 
+VAR TotalRuns = CALCULATE(SUM(fact_deliveries[total_runs]), fact_deliveries[phase] = "Death", fact_deliveries[is_super_over] = FALSE())
+VAR LegalBalls = CALCULATE(COUNTROWS(fact_deliveries), fact_deliveries[phase] = "Death", fact_deliveries[is_legal_delivery] = TRUE(), fact_deliveries[is_super_over] = FALSE())
+RETURN
+    DIVIDE(TotalRuns * 6.0, LegalBalls, BLANK())
+
+// Measure: Death Overs Wickets
+// Description: Total dismissals in Overs 16-20 (Death Overs)
+Death Overs Wickets = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Death",
+    fact_deliveries[is_wicket] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Phase Total Fours
+// Description: Total boundary 4s struck in fact_deliveries
+Phase Total Fours = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[is_boundary_four] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Phase Total Sixes
+// Description: Total boundary 6s struck in fact_deliveries
+Phase Total Sixes = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[is_boundary_six] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Phase Total Boundaries
+// Description: Total boundaries (4s + 6s) struck in fact_deliveries
+Phase Total Boundaries = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    (fact_deliveries[is_boundary_four] = TRUE() || fact_deliveries[is_boundary_six] = TRUE()),
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Bowler Powerplay Wickets
+// Description: Bowler-credited wickets taken in Overs 1-6 (excluding run outs, retired hurt/out)
+Bowler Powerplay Wickets = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Powerplay",
+    fact_deliveries[is_wicket] = TRUE(),
+    fact_deliveries[wicket_kind] <> "run out",
+    fact_deliveries[wicket_kind] <> "retired hurt",
+    fact_deliveries[wicket_kind] <> "retired out",
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Bowler Powerplay Overs
+// Description: Overs bowled in Powerplay (e.g. 21.0 overs)
+Bowler Powerplay Overs = 
+VAR LegalBalls = CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Powerplay",
+    fact_deliveries[is_legal_delivery] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+VAR FullOvers = INT(DIVIDE(LegalBalls, 6, 0))
+VAR RemBalls = MOD(LegalBalls, 6)
+RETURN FullOvers + DIVIDE(RemBalls, 10, 0)
+
+// Measure: Bowler Powerplay Economy
+// Description: Economy rate in Powerplay (runs per 6 legal balls)
+Bowler Powerplay Economy = 
+VAR RunsConc = CALCULATE(
+    SUM(fact_deliveries[total_runs]),
+    fact_deliveries[phase] = "Powerplay",
+    fact_deliveries[is_super_over] = FALSE()
+)
+VAR LegalBalls = CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Powerplay",
+    fact_deliveries[is_legal_delivery] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+RETURN
+    DIVIDE(RunsConc * 6.0, LegalBalls, BLANK())
+
+// Measure: Bowler Death Overs Economy (Min 10 Balls)
+// Description: Death overs economy rate qualified with >= 10 legal balls bowled
+Bowler Death Overs Economy (Min 10 Balls) = 
+VAR RunsConc = CALCULATE(
+    SUM(fact_deliveries[total_runs]),
+    fact_deliveries[phase] = "Death",
+    fact_deliveries[is_super_over] = FALSE()
+)
+VAR LegalBalls = CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Death",
+    fact_deliveries[is_legal_delivery] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)
+RETURN
+    IF(LegalBalls >= 10, DIVIDE(RunsConc * 6.0, LegalBalls, BLANK()), BLANK())
+
+// Measure: Bowler Death Overs Wickets
+// Description: Bowler-credited wickets taken in Overs 16-20 (Death Overs)
+Bowler Death Overs Wickets = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Death",
+    fact_deliveries[is_wicket] = TRUE(),
+    fact_deliveries[wicket_kind] <> "run out",
+    fact_deliveries[wicket_kind] <> "retired hurt",
+    fact_deliveries[wicket_kind] <> "retired out",
+    fact_deliveries[is_super_over] = FALSE()
+)
+
+// Measure: Bowler Death Overs Balls
+// Description: Total legal balls bowled in Death Overs
+Bowler Death Overs Balls = 
+CALCULATE(
+    COUNTROWS(fact_deliveries),
+    fact_deliveries[phase] = "Death",
+    fact_deliveries[is_legal_delivery] = TRUE(),
+    fact_deliveries[is_super_over] = FALSE()
+)

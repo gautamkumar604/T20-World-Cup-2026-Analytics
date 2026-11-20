@@ -1,0 +1,142 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 278.63021330098059,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 737.58673224960023,
+            "y": 19.375697347401115
+          },
+          "nodeIndex": "bridge_match_teams",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 922.53085673745386,
+            "y": 369.12132260648121
+          },
+          "nodeIndex": "dim_matches",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 255.57672722109464
+          },
+          "nodeIndex": "dim_players",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 164.61657622938446,
+            "y": -50
+          },
+          "nodeIndex": "dim_teams",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1209.5740863765664,
+            "y": 681.2330730210424
+          },
+          "nodeIndex": "dim_venues",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 635.52769053709494,
+            "y": 655.80448107362338
+          },
+          "nodeIndex": "fact_batting_scorecards",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 451.67594381028186,
+            "y": 106.74606220909516
+          },
+          "nodeIndex": "fact_bowling_scorecards",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 255.66139850270156,
+            "y": 460.432788745208
+          },
+          "nodeIndex": "fact_deliveries",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1209.6302133009806,
+            "y": 270.989722368921
+          },
+          "nodeIndex": "fact_match_summaries",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1443.6302133009806,
+            "y": 352.90224053681163
+          },
+          "nodeIndex": "view_tournament_standings",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

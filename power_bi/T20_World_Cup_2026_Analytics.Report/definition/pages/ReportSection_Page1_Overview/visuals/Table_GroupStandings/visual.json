@@ -1,0 +1,250 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Table_GroupStandings",
+  "position": {
+    "x": 19.856353732123949,
+    "y": 267.8139254868363,
+    "z": 10000,
+    "height": 438.53196563780767,
+    "width": 640.62867567326214
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_teams"
+                    }
+                  },
+                  "Property": "group_2026"
+                }
+              },
+              "queryRef": "dim_teams.group_2026",
+              "nativeQueryRef": "group_2026"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_teams"
+                    }
+                  },
+                  "Property": "team_name"
+                }
+              },
+              "queryRef": "dim_teams.team_name",
+              "nativeQueryRef": "team_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Selected Team Matches Scheduled"
+                }
+              },
+              "queryRef": "fact_match_summaries.Selected Team Matches Scheduled",
+              "nativeQueryRef": "Selected Team Matches Scheduled"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Selected Team Matches Won"
+                }
+              },
+              "queryRef": "fact_match_summaries.Selected Team Matches Won",
+              "nativeQueryRef": "Selected Team Matches Won"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Selected Team Losses"
+                }
+              },
+              "queryRef": "fact_match_summaries.Selected Team Losses",
+              "nativeQueryRef": "Selected Team Losses"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Selected Team Matches Abandoned"
+                }
+              },
+              "queryRef": "fact_match_summaries.Selected Team Matches Abandoned",
+              "nativeQueryRef": "Selected Team Matches Abandoned"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Tournament Points"
+                }
+              },
+              "queryRef": "fact_match_summaries.Tournament Points",
+              "nativeQueryRef": "Tournament Points"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Net Run Rate (ICC)"
+                }
+              },
+              "queryRef": "fact_match_summaries.Net Run Rate (ICC)",
+              "nativeQueryRef": "Net Run Rate (ICC)"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d9c994dc8d60bcb8a0d0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_teams"
+              }
+            },
+            "Property": "group_2026"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "261b4eafd0510a672455",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_teams"
+              }
+            },
+            "Property": "team_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7a2753765e907506ea7c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Selected Team Matches Scheduled"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4231c42d9c53c485aa0b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Selected Team Matches Won"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aafa89270c42cd7e7cc4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Selected Team Losses"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6be385da24831e04b620",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Selected Team Matches Abandoned"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a82d58c0b2c10c37bbbd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Tournament Points"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6f682cf0867111cc13e4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Net Run Rate (ICC)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

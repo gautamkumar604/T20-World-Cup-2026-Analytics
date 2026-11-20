@@ -1,0 +1,61 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Card_TournamentRunRate",
+  "position": {
+    "x": 775.44286680189316,
+    "y": 150.44527288304351,
+    "z": 8000,
+    "height": 116.30166485284924,
+    "width": 184.97761108347046
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Tournament Run Rate"
+                }
+              },
+              "queryRef": "fact_match_summaries.Tournament Run Rate",
+              "nativeQueryRef": "Tournament Run Rate"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {}
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fbb418509d2648b56b02",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Tournament Run Rate"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

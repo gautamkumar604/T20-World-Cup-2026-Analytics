@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Bar_TournamentProgress",
+  "position": {
+    "x": 20,
+    "y": 158,
+    "z": 9000,
+    "height": 205,
+    "width": 380
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_matches"
+                    }
+                  },
+                  "Property": "Stage_Normalized"
+                }
+              },
+              "queryRef": "dim_matches.Stage_Normalized",
+              "nativeQueryRef": "Stage_Normalized",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Selected Team Matches Completed"
+                }
+              },
+              "queryRef": "fact_match_summaries.Selected Team Matches Completed",
+              "nativeQueryRef": "Selected Team Matches Completed"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d3341e26040142a1036d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_matches"
+              }
+            },
+            "Property": "Stage_Normalized"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ac7c421f204683801c03",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Selected Team Matches Completed"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

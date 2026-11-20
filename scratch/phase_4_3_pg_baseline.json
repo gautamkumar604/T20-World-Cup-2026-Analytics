@@ -1,0 +1,164 @@
+{
+  "phase_kpis": [
+    {
+      "phase": "Powerplay",
+      "runs": 5037,
+      "legal_balls": 3528,
+      "run_rate": 8.57,
+      "total_wickets": 174,
+      "bowler_wickets": 170
+    },
+    {
+      "phase": "Middle",
+      "runs": 7165,
+      "legal_balls": 5214,
+      "run_rate": 8.25,
+      "total_wickets": 237,
+      "bowler_wickets": 231
+    },
+    {
+      "phase": "Death",
+      "runs": 4001,
+      "legal_balls": 2376,
+      "run_rate": 10.1,
+      "total_wickets": 238,
+      "bowler_wickets": 212
+    }
+  ],
+  "toss_impact": [
+    {
+      "toss_decision": "bat",
+      "total_matches": 16,
+      "toss_winner_won": 8,
+      "toss_loser_won": 8,
+      "toss_win_pct": 50.0
+    },
+    {
+      "toss_decision": "field",
+      "total_matches": 37,
+      "toss_winner_won": 15,
+      "toss_loser_won": 22,
+      "toss_win_pct": 40.54
+    }
+  ],
+  "boundary_dist": [
+    {
+      "phase": "Powerplay",
+      "total_fours": 581,
+      "total_sixes": 191,
+      "total_boundaries": 772,
+      "boundary_runs": 3470,
+      "boundary_run_pct": 68.89
+    },
+    {
+      "phase": "Middle",
+      "total_fours": 468,
+      "total_sixes": 296,
+      "total_boundaries": 764,
+      "boundary_runs": 3648,
+      "boundary_run_pct": 50.91
+    },
+    {
+      "phase": "Death",
+      "total_fours": 279,
+      "total_sixes": 231,
+      "total_boundaries": 510,
+      "boundary_runs": 2502,
+      "boundary_run_pct": 62.53
+    }
+  ],
+  "pp_bowlers": [
+    {
+      "bowler": "JC Archer",
+      "team": "England",
+      "matches": 8,
+      "balls": 126,
+      "runs": 166,
+      "wickets": 8,
+      "economy": 7.9
+    },
+    {
+      "bowler": "B Muzarabani",
+      "team": "Zimbabwe",
+      "matches": 6,
+      "balls": 78,
+      "runs": 75,
+      "wickets": 7,
+      "economy": 5.77
+    },
+    {
+      "bowler": "SC van Schalkwyk",
+      "team": "United States of America",
+      "matches": 4,
+      "balls": 42,
+      "runs": 41,
+      "wickets": 7,
+      "economy": 5.86
+    },
+    {
+      "bowler": "JJ Bumrah",
+      "team": "India",
+      "matches": 7,
+      "balls": 66,
+      "runs": 65,
+      "wickets": 6,
+      "economy": 5.91
+    },
+    {
+      "bowler": "A Dutt",
+      "team": "Netherlands",
+      "matches": 4,
+      "balls": 60,
+      "runs": 71,
+      "wickets": 5,
+      "economy": 7.1
+    }
+  ],
+  "death_bowlers": [
+    {
+      "bowler": "MW Forde",
+      "team": "West Indies",
+      "matches": 2,
+      "balls": 10,
+      "runs": 4,
+      "wickets": 2,
+      "economy": 2.4
+    },
+    {
+      "bowler": "DN Wellalage",
+      "team": "Sri Lanka",
+      "matches": 2,
+      "balls": 18,
+      "runs": 10,
+      "wickets": 1,
+      "economy": 3.33
+    },
+    {
+      "bowler": "Sompal Kami",
+      "team": "Nepal",
+      "matches": 1,
+      "balls": 12,
+      "runs": 8,
+      "wickets": 3,
+      "economy": 4.0
+    },
+    {
+      "bowler": "KT Maphaka",
+      "team": "South Africa",
+      "matches": 2,
+      "balls": 12,
+      "runs": 10,
+      "wickets": 1,
+      "economy": 5.0
+    },
+    {
+      "bowler": "LA Dawson",
+      "team": "England",
+      "matches": 4,
+      "balls": 24,
+      "runs": 22,
+      "wickets": 5,
+      "economy": 5.5
+    }
+  ]
+}

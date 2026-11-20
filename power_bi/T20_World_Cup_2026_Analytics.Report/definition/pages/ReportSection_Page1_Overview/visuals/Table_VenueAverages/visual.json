@@ -1,0 +1,138 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Table_VenueAverages",
+  "position": {
+    "x": 680.34138313751009,
+    "y": 487.61340218121194,
+    "z": 12000,
+    "height": 218.73248894343206,
+    "width": 580.01454322783115
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_venues"
+                    }
+                  },
+                  "Property": "venue_name"
+                }
+              },
+              "queryRef": "dim_venues.venue_name",
+              "nativeQueryRef": "venue_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_venues"
+                    }
+                  },
+                  "Property": "city"
+                }
+              },
+              "queryRef": "dim_venues.city",
+              "nativeQueryRef": "city"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Total Tournament Runs"
+                }
+              },
+              "queryRef": "fact_match_summaries.Total Tournament Runs",
+              "nativeQueryRef": "Total Tournament Runs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Tournament Run Rate"
+                }
+              },
+              "queryRef": "fact_match_summaries.Tournament Run Rate",
+              "nativeQueryRef": "Tournament Run Rate"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8edc8662e3e029047c18",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_venues"
+              }
+            },
+            "Property": "venue_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e766095db02c698c2897",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_venues"
+              }
+            },
+            "Property": "city"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bd91f600ab8b5e364399",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Total Tournament Runs"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "321222778ddcb330b30e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Tournament Run Rate"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

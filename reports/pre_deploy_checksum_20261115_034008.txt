@@ -1,0 +1,5 @@
+Pre-Deployment Checksum for dim_matches (55 rows)
+Timestamp: 20261115_034008
+MD5 (derived win_by_runs/wickets): 26f2ebeea202a5ee11d47c872bce7326
+MD5 (native outcome_type/win_margin): ee687ff08dd9e93e3a58c56a369fbce7
+SHA256 (full rows): \x522b7c959500eab961cd1168fb631cf56491dec3220d2e5687fbd291ef2e96e2

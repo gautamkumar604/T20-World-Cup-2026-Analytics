@@ -1,0 +1,159 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Table_PowerplaySpecialists",
+  "position": {
+    "x": 20,
+    "y": 420,
+    "z": 11000,
+    "height": 285,
+    "width": 575
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "bowler"
+                }
+              },
+              "queryRef": "fact_deliveries.bowler",
+              "nativeQueryRef": "bowler"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "bowling_team"
+                }
+              },
+              "queryRef": "fact_deliveries.bowling_team",
+              "nativeQueryRef": "bowling_team"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Bowler Powerplay Wickets"
+                }
+              },
+              "queryRef": "fact_deliveries.Bowler Powerplay Wickets",
+              "nativeQueryRef": "Bowler Powerplay Wickets"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Bowler Powerplay Economy"
+                }
+              },
+              "queryRef": "fact_deliveries.Bowler Powerplay Economy",
+              "nativeQueryRef": "Bowler Powerplay Economy"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Bowler Powerplay Overs"
+                }
+              },
+              "queryRef": "fact_deliveries.Bowler Powerplay Overs",
+              "nativeQueryRef": "Bowler Powerplay Overs"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_deliveries"
+                  }
+                },
+                "Property": "Bowler Powerplay Wickets"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "FilterTop5_PowerplaySpecialists",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_deliveries"
+              }
+            },
+            "Property": "bowler"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fact_deliveries",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "VisualTopN": {
+                  "ItemCount": 5
+                }
+              },
+              "Target": [
+                {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "f"
+                      }
+                    },
+                    "Property": "bowler"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

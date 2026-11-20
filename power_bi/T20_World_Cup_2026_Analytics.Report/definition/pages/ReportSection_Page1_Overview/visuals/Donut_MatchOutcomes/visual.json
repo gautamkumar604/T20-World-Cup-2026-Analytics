@@ -1,0 +1,87 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Donut_MatchOutcomes",
+  "position": {
+    "x": 680.34138313751009,
+    "y": 267.8139254868363,
+    "z": 11000,
+    "height": 198.4597216755042,
+    "width": 580.01454322783115
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_matches"
+                    }
+                  },
+                  "Property": "outcome_type"
+                }
+              },
+              "queryRef": "dim_matches.outcome_type",
+              "nativeQueryRef": "outcome_type",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Tournament Matches Completed"
+                }
+              },
+              "queryRef": "fact_match_summaries.Tournament Matches Completed",
+              "nativeQueryRef": "Tournament Matches Completed"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a2ba62dc64477382eea0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_matches"
+              }
+            },
+            "Property": "outcome_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e3770ea5e217c606517b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Tournament Matches Completed"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

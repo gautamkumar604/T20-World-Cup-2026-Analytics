@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "ReportSection_Page1_Overview",
+    "ReportSection_Page2_Standings",
+    "ReportSection_Page3_ExecutiveOverview",
+    "ReportSection_Page4_TacticalAnalysis"
+  ],
+  "activePageName": "ReportSection_Page1_Overview"
+}

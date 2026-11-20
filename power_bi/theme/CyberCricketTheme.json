@@ -1,0 +1,65 @@
+{
+  "name": "CyberCricketTheme",
+  "dataColors": [
+    "#1A365D",
+    "#2B6CB0",
+    "#319795",
+    "#D69E2E",
+    "#DD6B20",
+    "#E53E3E",
+    "#805AD5",
+    "#4A5568"
+  ],
+  "background": "#F8F9FA",
+  "foreground": "#1A365D",
+  "tableAccent": "#1A365D",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "*": {
+          "fontFamily": "Segoe UI"
+        },
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            },
+            "radius": 4
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F8F9FA"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

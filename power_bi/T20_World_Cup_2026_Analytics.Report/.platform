@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "T20_World_Cup_2026_Analytics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ad91102e-7d33-4240-822e-c1ac0f7b32ab"
+  }
+}

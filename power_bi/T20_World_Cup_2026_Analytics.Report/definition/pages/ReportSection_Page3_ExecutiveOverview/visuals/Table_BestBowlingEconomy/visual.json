@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Table_BestBowlingEconomy",
+  "position": {
+    "x": 950,
+    "y": 372,
+    "z": 15000,
+    "height": 335,
+    "width": 310
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_bowling_scorecards"
+                    }
+                  },
+                  "Property": "player_name"
+                }
+              },
+              "queryRef": "fact_bowling_scorecards.player_name",
+              "nativeQueryRef": "player_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_bowling_scorecards"
+                    }
+                  },
+                  "Property": "team"
+                }
+              },
+              "queryRef": "fact_bowling_scorecards.team",
+              "nativeQueryRef": "team"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_bowling_scorecards"
+                    }
+                  },
+                  "Property": "Player Economy Rate (Min 10 Overs)"
+                }
+              },
+              "queryRef": "fact_bowling_scorecards.Player Economy Rate (Min 10 Overs)",
+              "nativeQueryRef": "Player Economy Rate (Min 10 Overs)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_bowling_scorecards"
+                    }
+                  },
+                  "Property": "Player Total Wickets"
+                }
+              },
+              "queryRef": "fact_bowling_scorecards.Player Total Wickets",
+              "nativeQueryRef": "Player Total Wickets"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_bowling_scorecards"
+                  }
+                },
+                "Property": "Player Economy Rate (Min 10 Overs)"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "FilterTop5_Table_BestBowlingEconomy",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_bowling_scorecards"
+              }
+            },
+            "Property": "player_name"
+          }
+        },
+        "type": "TopN",
+        "howCreated": "User",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "fact_bowling_scorecards",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Target": [
+                {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "t"
+                      }
+                    },
+                    "Property": "player_name"
+                  }
+                }
+              ],
+              "Condition": {
+                "VisualTopN": {
+                  "ItemCount": 5
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

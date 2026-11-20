@@ -1,0 +1,293 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Matrix_TournamentStandings",
+  "position": {
+    "x": 20,
+    "y": 165,
+    "z": 60,
+    "height": 535,
+    "width": 1240
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "stage_normalized"
+                }
+              },
+              "queryRef": "view_tournament_standings.stage_normalized",
+              "nativeQueryRef": "stage_normalized",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "group_name"
+                }
+              },
+              "queryRef": "view_tournament_standings.group_name",
+              "nativeQueryRef": "group_name",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "team_name"
+                }
+              },
+              "queryRef": "view_tournament_standings.team_name",
+              "nativeQueryRef": "team_name",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "resolution_step"
+                }
+              },
+              "queryRef": "view_tournament_standings.resolution_step",
+              "nativeQueryRef": "resolution_step"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "qualification_status"
+                }
+              },
+              "queryRef": "view_tournament_standings.qualification_status",
+              "nativeQueryRef": "qualification_status"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "pool_rank"
+                }
+              },
+              "queryRef": "view_tournament_standings.pool_rank",
+              "nativeQueryRef": "pool_rank"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "played"
+                }
+              },
+              "queryRef": "view_tournament_standings.played",
+              "nativeQueryRef": "played"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "wins"
+                }
+              },
+              "queryRef": "view_tournament_standings.wins",
+              "nativeQueryRef": "wins"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "losses"
+                }
+              },
+              "queryRef": "view_tournament_standings.losses",
+              "nativeQueryRef": "losses"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "no_result"
+                }
+              },
+              "queryRef": "view_tournament_standings.no_result",
+              "nativeQueryRef": "no_result"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "points"
+                }
+              },
+              "queryRef": "view_tournament_standings.points",
+              "nativeQueryRef": "points"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "view_tournament_standings"
+                    }
+                  },
+                  "Property": "nrr_display"
+                }
+              },
+              "queryRef": "view_tournament_standings.nrr_display",
+              "nativeQueryRef": "nrr_display"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Compact'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1A365D'"
+                    }
+                  }
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8F9FA'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "view_tournament_standings.points"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "view_tournament_standings.team_name"
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "steppedLayoutIndentation": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

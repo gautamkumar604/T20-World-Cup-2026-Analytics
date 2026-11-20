@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "Card_TotalRuns",
+  "position": {
+    "x": 409.66792963118883,
+    "y": 151.51226063398707,
+    "z": 6000,
+    "height": 116.30166485284924,
+    "width": 184.97761108347046
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_match_summaries"
+                    }
+                  },
+                  "Property": "Total Tournament Runs"
+                }
+              },
+              "queryRef": "fact_match_summaries.Total Tournament Runs",
+              "nativeQueryRef": "Total Tournament Runs"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9d41dfa07a03e39b25d7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_match_summaries"
+              }
+            },
+            "Property": "Total Tournament Runs"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
